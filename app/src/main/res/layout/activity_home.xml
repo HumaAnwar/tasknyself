@@ -14,7 +14,7 @@ android:layout_height="180dp"
 android:orientation="vertical">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iamgetodo"
-        android:layout_width="100dp"
+        android:layout_width="90dp"
         android:src="@drawable/img_1"
         android:layout_height="100dp"
        />
