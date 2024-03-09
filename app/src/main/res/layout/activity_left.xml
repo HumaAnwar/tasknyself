@@ -10,25 +10,25 @@
     tools:context=".left">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layout"
+        android:layout_height="205dp"
+        android:background="#424355"
         android:gravity="center"
-        android:background="#1B1F23"
         android:orientation="vertical">
+
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iamgetodo"
             android:layout_width="100dp"
-            android:src="@drawable/img29"
-            android:layout_height="100dp"/>
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/img29" />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
-            android:fontFamily="sans-serif-black"
+            android:hint="Enter Name"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            android:hint="Enter Name"/>
+            android:textColorHint="@color/white"
+            android:textSize="17sp" />
 
 
-</LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -17,13 +17,17 @@ import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import androidx.compose.ui.text.toUpperCase
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.HISkyTech.LoginScreen.Adapters.AdapterTask
 import com.HISkyTech.LoginScreen.Models.task_model
 import com.HISkyTech.LoginScreen.R
 import com.HISkyTech.LoginScreen.databinding.ActivityHomeBinding
 import com.bumptech.glide.Glide
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import java.util.Locale
@@ -33,6 +37,9 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
     private lateinit var binding: ActivityHomeBinding
      private lateinit var dialog: Dialog
     private val IMAGE_PICKER_REQUEST_CODE = 123
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navigationView: NavigationView
+    lateinit var toolbar: Toolbar
     private var imageURI: Uri? = null
      private lateinit var itemList: List<task_model>
      private lateinit var filteredList: MutableList<task_model>
@@ -54,7 +61,62 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
         }
 
 
+        drawerLayout = findViewById(R.id.drawerlayout)
+        navigationView = findViewById(R.id.navigationView)
 
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, R.string.open, R.string.close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+
+
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            // Handle navigation item clicks here
+            when (menuItem.itemId) {
+                R.id.home -> {
+                    Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+
+                }
+
+                R.id.contact -> {
+                    Toast.makeText(this, "Contact us clicked", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                R.id.fav -> {
+                    Toast.makeText(this, "Favorite clicked", Toast.LENGTH_SHORT).show()
+                }
+
+                R.id.share -> {
+                    Toast.makeText(this, "Share Clicked", Toast.LENGTH_SHORT).show()
+
+                }  R.id.rat -> {
+                    Toast.makeText(this, "Rate us Clicked", Toast.LENGTH_SHORT).show()
+
+                }  R.id.theme -> {
+                    Toast.makeText(this, "Theme Clicked", Toast.LENGTH_SHORT).show()
+
+                }   R.id.noti -> {
+                    Toast.makeText(this, "Notification Clicked", Toast.LENGTH_SHORT).show()
+
+                } R.id.rem -> {
+                    Toast.makeText(this, "Reminder Clicked", Toast.LENGTH_SHORT).show()
+
+                } R.id.logout -> {
+                    Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+            drawerLayout.closeDrawers()
+            true
+
+
+        }
 
 
 
@@ -181,6 +243,8 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
                     Toast.makeText(this, "Task not added", Toast.LENGTH_SHORT).show()
                 }
         }
+
+
     }
 
     private fun setAdaptertask() {
