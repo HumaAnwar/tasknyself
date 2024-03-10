@@ -18,6 +18,7 @@ import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.compose.ui.text.toUpperCase
 import androidx.drawerlayout.widget.DrawerLayout
@@ -44,6 +45,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
      private lateinit var filteredList: MutableList<task_model>
      private lateinit var dialogDetail: Dialog
     private var db = Firebase.firestore
+    private var isDarkTheme: Boolean = false
     var list= ArrayList<task_model> ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,13 +88,19 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
                 }
 
                 R.id.share -> {
-                    Toast.makeText(this, "Share Clicked", Toast.LENGTH_SHORT).show()
+                    shareContent("This is the content you want to share.")
 
                 }  R.id.rat -> {
                     Toast.makeText(this, "Rate us Clicked", Toast.LENGTH_SHORT).show()
 
                 }  R.id.theme -> {
-                    Toast.makeText(this, "Theme Clicked", Toast.LENGTH_SHORT).show()
+                isDarkTheme = !isDarkTheme
+                if (isDarkTheme) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+
 
                 }   R.id.noti -> {
                     Toast.makeText(this, "Notification Clicked", Toast.LENGTH_SHORT).show()
@@ -377,8 +385,19 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
         }
      override fun onDeleteClick(taskModel: task_model) {
      }
+    private fun shareContent(content: String) {
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, content)
+        val chooserIntent = Intent.createChooser(intent, "Share via")
 
 
+        startActivity(chooserIntent)
 
-}
+
+    }
+
+
+    }
 
