@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#2A2B39"
+    android:background="#000000"
     android:id="@+id/drawerlayout"
     android:layout_height="match_parent"
     tools:context=".Ui.Home">
     <RelativeLayout
         android:layout_width="match_parent"
+        android:id="@+id/relative"
         android:layout_height="match_parent"
         >
 
@@ -16,9 +17,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#123A19"
-            app:title="Home"
-            app:titleTextColor="#A11111" />
+            android:background="#040532"
+            app:title="My Notes"
+            app:titleTextColor="@color/white" />
 
 
     </RelativeLayout>
@@ -26,38 +27,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Ui.Home">
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="180dp"
-    android:id="@+id/layout"
-    android:gravity="center"
-    android:background="#0F0D22"
-android:orientation="vertical">
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iamgetodo"
-        android:layout_width="90dp"
-        android:src="@drawable/img_1"
-        android:layout_height="100dp"
-       />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Congratulations"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"
-        />
-</LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout"
         android:id="@+id/layout2"
         android:orientation="vertical">
     <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="#697D8C"
+        android:layout_marginTop="60dp"
         android:id="@+id/tvSearch"/>
 <TextView
     android:id="@+id/view"
@@ -65,6 +44,7 @@ android:orientation="vertical">
     android:layout_height="wrap_content"
     android:text="ViewTasks"
     android:layout_gravity="end"
+    android:layout_marginTop="10dp"
     android:textColor="@color/white"
     android:layout_marginEnd="10dp"
     android:textStyle="bold"/>
@@ -84,7 +64,7 @@ android:orientation="vertical">
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="#040532"
         android:src="@drawable/baseline_add_24" />
 
     </RelativeLayout>

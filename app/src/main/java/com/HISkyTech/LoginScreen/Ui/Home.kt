@@ -36,11 +36,10 @@ import java.util.Locale
 class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
     private lateinit var binding: ActivityHomeBinding
      private lateinit var dialog: Dialog
-    private val IMAGE_PICKER_REQUEST_CODE = 123
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
     lateinit var toolbar: Toolbar
-    private var imageURI: Uri? = null
+
      private lateinit var itemList: List<task_model>
      private lateinit var filteredList: MutableList<task_model>
      private lateinit var dialogDetail: Dialog
@@ -53,12 +52,6 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
         setContentView(binding.root)
 
 
-
-        binding.iamgetodo.setOnClickListener{
-            val pickImage =
-                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(pickImage, IMAGE_PICKER_REQUEST_CODE)
-        }
 
 
         drawerLayout = findViewById(R.id.drawerlayout)
@@ -384,19 +377,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
         }
      override fun onDeleteClick(taskModel: task_model) {
      }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == IMAGE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
 
-            imageURI = data?.data
-            Glide.with(this)
-                .load(imageURI)
-                .centerCrop()
-                .placeholder(R.drawable.ic_launcher_background)
-                .into(binding.iamgetodo)
-
-        }
-    }
 
 
 }

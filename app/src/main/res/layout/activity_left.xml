@@ -18,6 +18,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
+           android:id="@+id/imagetodo"
             android:layout_gravity="center"
             android:src="@drawable/img29" />
 
