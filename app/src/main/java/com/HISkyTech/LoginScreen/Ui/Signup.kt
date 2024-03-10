@@ -20,10 +20,7 @@ class signup : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.confirmpassword
-        binding.password
-        binding.imageViewEye
-        binding.imageViewEye
+
         binding.signin.setOnClickListener() {
             startActivity(Intent(this, Login::class.java))
         }
@@ -78,16 +75,36 @@ class signup : AppCompatActivity() {
         if (isPasswordVisible) {
             // Show password
             binding.password.transformationMethod = null
-            binding.confirmpassword.transformationMethod = null
+
             binding.imageViewEye.setImageResource(R.drawable.baseline_remove_red_eye_24)
-            binding.imageEye.setImageResource(R.drawable.baseline_remove_red_eye_24)
+
 
         } else {
             // Hide password
             binding.password.transformationMethod = PasswordTransformationMethod.getInstance()
+
+            binding.imageViewEye.setImageResource(R.drawable.baseline_remove_red_eye_24)
+
+
+        }
+    }
+    fun toggleVisibility(view: View) {
+        isPasswordVisible = !isPasswordVisible
+
+        if (isPasswordVisible) {
+            // Show password
+
+
+            binding.confirmpassword.transformationMethod = null
+
+            binding.imageEye.setImageResource(R.drawable.baseline_remove_red_eye_24)
+
+        } else {
+            // Hide password
+
             binding.confirmpassword.transformationMethod =
                 PasswordTransformationMethod.getInstance()
-            binding.imageViewEye.setImageResource(R.drawable.baseline_remove_red_eye_24)
+
             binding.imageEye.setImageResource(R.drawable.baseline_remove_red_eye_24)
 
         }
