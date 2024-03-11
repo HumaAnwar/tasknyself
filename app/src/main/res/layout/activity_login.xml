@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-android:background="@color/black"
+android:background="@drawable/img_5"
     android:alpha="0.9"
 android:gravity="bottom"
     android:layout_height="match_parent"
     tools:context=".Ui.Login">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:backgroundTint="#0000ffff"
@@ -26,7 +27,7 @@ android:gravity="bottom"
                 android:layout_gravity="end"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="#473131"
                 android:gravity="center"
 
                 android:layout_width="match_parent"
@@ -38,24 +39,24 @@ android:gravity="bottom"
                 android:text="Email"
                 android:padding="5dp"
                 android:id="@+id/emailtext"
-
+                android:textColor="#473131"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
                 android:id="@+id/email"
-
-
+                android:textColorHint="#473131"
                 android:hint="Enter your Email"
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="7dp"
                 android:padding="10dp"
+                android:textColor="#473131"
                 android:textSize="18sp"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:text="Password"
                 android:padding="5dp"
-
+                android:textColor="#473131"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 <RelativeLayout
@@ -69,6 +70,8 @@ android:gravity="bottom"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="7dp"
                 android:padding="10dp"
+                android:textColor="#473131"
+                android:textColorHint="#473131"
                 android:textSize="18sp"
                 android:inputType="textWebPassword"
                 android:layout_width="300dp"
@@ -88,7 +91,7 @@ android:gravity="bottom"
                 android:layout_marginTop="20dp"
                 android:id="@+id/lgn"
                 android:text="Login"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="#473131"
 android:textColor="@color/white"
                 android:layout_marginVertical="20dp"
                 android:layout_width="match_parent"
@@ -113,7 +116,7 @@ android:textColor="@color/white"
                     android:id="@+id/signup"
                     android:layout_marginStart="5dp"
                     android:textSize="15sp"
-                    android:textColor="#5B2DAC"
+                    android:textColor="#473131"
                     android:layout_marginVertical="10dp"/>
 
             </LinearLayout>

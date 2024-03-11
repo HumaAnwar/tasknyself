@@ -4,40 +4,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginHorizontal="30dp"
+
+    android:background="@drawable/img_6"
     android:layout_height="match_parent"
     tools:context=".Ui.MainActivity">
 <View
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:id="@+id/view"/>
-    <ImageView
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgg"
         android:layout_centerHorizontal="true"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/view"
-         android:src="@drawable/img1"/>
+         android:src="@drawable/img_8"/>
     <TextView
         android:layout_below="@+id/imgg"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:text="Get things done with TODOO"
+        android:text="Welcome to ToDoTask"
         android:textStyle="bold"
         android:id="@+id/tv"
-       android:textColor="@color/black"
+       android:textColor="@color/white"
         android:textSize="20sp"/>
     <TextView
         android:layout_below="@+id/tv"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:text="Using an app to keep track of your to-do list is an incredibly effective method for staying on schedule and up-to-date with everything your work and social life throws at you. "
+        android:text="where productivity meets simplicity. Let's turn your to-dos into triumphs! Get started and seamlessly continue your journey to task mastery."
         android:id="@+id/tv1"
+        android:gravity="center"
         android:layout_marginHorizontal="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"/>
    <com.google.android.material.button.MaterialButton
        android:layout_width="match_parent"
@@ -46,10 +50,10 @@
        android:layout_marginTop="30dp"
        android:text="Get Started"
        android:id="@+id/nextbtn"
-       android:textColor="@color/white"
+       android:textColor="#0C0808"
        android:textStyle="bold"
-       app:backgroundTint="#2196F3"
-       android:layout_marginHorizontal="30dp"/>
+       app:backgroundTint="@color/white"
+       android:layout_marginHorizontal="50dp"/>
 
 
 

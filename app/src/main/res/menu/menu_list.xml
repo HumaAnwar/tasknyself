@@ -41,7 +41,7 @@ tools:showIn="navigation_view"
         <item
             android:id="@+id/theme"
             android:title="Theme"
-            android:icon="@drawable/baseline_brush_24"
+            android:icon="@drawable/baseline_brightness_3_24"
             /><item
             android:id="@+id/noti"
             android:title="Notification"

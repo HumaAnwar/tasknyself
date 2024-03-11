@@ -55,7 +55,6 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
 
 
 
-
         drawerLayout = findViewById(R.id.drawerlayout)
         navigationView = findViewById(R.id.navigationView)
 
@@ -73,6 +72,10 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             // Handle navigation item clicks here
             when (menuItem.itemId) {
+                R.id.imagetodo->{
+                    Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+
+                }
                 R.id.home -> {
                     Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
 
@@ -93,8 +96,10 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
                 }  R.id.rat -> {
                     Toast.makeText(this, "Rate us Clicked", Toast.LENGTH_SHORT).show()
 
-                }  R.id.theme -> {
+                }
+                R.id.theme -> {
                 isDarkTheme = !isDarkTheme
+
                 if (isDarkTheme) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 } else {
@@ -156,7 +161,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
 
         if (filteredList.isEmpty()) {
             // If no items are added to the filtered list, display a toast message indicating no data found.
-            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show()
+
         } else {
             // If there are filtered items, set up a new adapter with the filtered list and update the RecyclerView.
             binding.rv.adapter = AdapterTask(this, filteredList, this@Home)
@@ -391,7 +396,6 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, content)
         val chooserIntent = Intent.createChooser(intent, "Share via")
-
 
         startActivity(chooserIntent)
 

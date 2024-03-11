@@ -16,59 +16,53 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#040532"
-            app:title="My Notes"
+            android:layout_height="40dp"
+            android:background="#473131"
+            app:title="My Tasks"
             app:titleTextColor="@color/white" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Ui.Home">
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/tvSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@color/white" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout2" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/baseline_add_24" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".Ui.Home">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/layout2"
-        android:orientation="vertical">
-    <androidx.appcompat.widget.SearchView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-       android:background="@color/white"
-        android:layout_marginHorizontal="20dp"
 
-        android:layout_marginTop="60dp"
-        android:id="@+id/tvSearch"/>
-<TextView
-    android:id="@+id/view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="ViewTasks"
-    android:layout_gravity="end"
-    android:layout_marginTop="10dp"
-    android:textColor="@color/white"
-    android:layout_marginEnd="10dp"
-    android:textStyle="bold"/>
-    </LinearLayout>
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/layout2"
-    android:id="@+id/rv"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/baseline_add_24"/>
-
-    </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="wrap_content"
