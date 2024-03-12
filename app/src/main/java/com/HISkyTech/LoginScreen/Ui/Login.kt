@@ -53,7 +53,7 @@ class Login : AppCompatActivity() {
                                     val editor = sharedPreferences.edit()
                                     editor.putBoolean("IsLog",true)
                                     editor.apply()
-                                    editor.putString("userid", documentId)
+                                    editor.putString("userId", documentId)
                                     editor.apply()
 
                                     Toast.makeText(this@Login, "Login Successful", Toast.LENGTH_SHORT).show()

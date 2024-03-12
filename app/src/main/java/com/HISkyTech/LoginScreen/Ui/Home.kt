@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,7 +41,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
     lateinit var toolbar: Toolbar
-
+    private lateinit var sharedPreferences: SharedPreferences
      private lateinit var itemList: List<task_model>
      private lateinit var filteredList: MutableList<task_model>
      private lateinit var dialogDetail: Dialog
@@ -52,7 +53,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
 
 
         drawerLayout = findViewById(R.id.drawerlayout)
@@ -238,7 +239,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
 
         db.collection("Tasks").add(model).addOnSuccessListener { document ->
             model.task_id = document.id
-            model.userId = sharedPreferences.getString("userid", "").toString()
+            model.userId = sharedPreferences.getString("userId", "").toString()
 
             db.collection("Tasks").document(document.id).set(model)
                 .addOnSuccessListener {
@@ -254,19 +255,23 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
     }
 
     private fun setAdaptertask() {
-        val listtask = ArrayList<task_model>()
+        db.collection("Tasks")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
 
-        db.collection("Tasks").get().addOnSuccessListener { taskResult ->
-
-            if (taskResult != null) {
-                if (taskResult.size() > 0) {
-                    for (document in taskResult) {
-                        listtask.add(document.toObject(task_model::class.java))
-                        listtask.sortBy { it.title }
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
                     }
-                }
+
+
+
                 binding.rv.layoutManager = GridLayoutManager(this,2)
-                binding.rv.adapter = AdapterTask(this, listtask,this )
+                binding.rv.adapter = AdapterTask(this, taskList,this )
             }
         }
     }
