@@ -25,7 +25,7 @@ class Splash_screen : AppCompatActivity() {
                 Toast.makeText(this, sharedPref.getBoolean("IsLog",false).toString(), Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, Login::class.java))
             } else {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, different_tasks::class.java))
             }
             finish()
         },SPLASH_TIME_OUT)
