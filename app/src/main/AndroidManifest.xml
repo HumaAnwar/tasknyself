@@ -15,6 +15,30 @@
         android:theme="@style/Theme.LoginScreen"
         tools:targetApi="31">
         <activity
+            android:name=".Bills"
+            android:exported="false" />
+        <activity
+            android:name=".Shopping"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
+            android:name=".Study"
+            android:exported="false" />
+        <activity
+            android:name=".Food"
+            android:exported="false" />
+        <activity
+            android:name=".Music"
+            android:exported="false" />
+        <activity
+            android:name=".Travel"
+            android:exported="false" />
+        <activity
+            android:name=".Work"
+            android:exported="false" />
+        <activity
             android:name=".Ui.different_tasks"
             android:exported="false" />
         <activity
