@@ -33,6 +33,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:cardElevation="5dp"
+        android:id="@+id/work"
         app:cardUseCompatPadding="true">
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Work"
                 android:layout_marginVertical="20dp"
-                android:id="@+id/work"
+
                 android:textSize="20sp"
                 android:textColor="@color/black"/>
         </LinearLayout>
@@ -59,6 +60,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:cardElevation="5dp"
+                android:id="@+id/Music"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -78,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:text="Music"
                 android:layout_marginHorizontal="20dp"
-                android:id="@+id/Music"
                 android:layout_marginVertical="20dp"
                 android:textSize="20sp"
                 android:textColor="@color/black"/>
@@ -96,7 +97,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:id="@+id/travel"
             app:cardElevation="5dp"
+
             app:cardUseCompatPadding="true">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Travel"
-                    android:id="@+id/travel"
+
                     android:layout_marginVertical="20dp"
                     android:textSize="20sp"
                     android:textColor="@color/black"/>
@@ -124,6 +127,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:cardElevation="5dp"
+            android:id="@+id/food"
             app:cardUseCompatPadding="true">
 
             <LinearLayout
@@ -141,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Food"
-                    android:id="@+id/food"
+
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="20dp"
                     android:textSize="20sp"
@@ -161,6 +165,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:cardElevation="5dp"
+            android:id="@+id/study"
             app:cardUseCompatPadding="true">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -177,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Study"
-                    android:id="@+id/study"
+
                     android:layout_marginVertical="20dp"
                     android:textSize="20sp"
                     android:textColor="@color/black"/>
@@ -186,6 +191,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:id="@+id/home"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true">
 
@@ -205,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="home"
-                    android:id="@+id/home"
+
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="20dp"
                     android:textSize="20sp"
