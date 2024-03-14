@@ -1,5 +1,6 @@
 package com.HISkyTech.LoginScreen.Ui
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -24,29 +25,26 @@ class different_tasks : AppCompatActivity() {
     private lateinit var binding: ActivityDifferentTasksBinding
   private lateinit var dialog: Dialog
   private var isDarkTheme: Boolean = false
-  lateinit var drawerLayout: DrawerLayout
-  lateinit var navigationView: NavigationView
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
-      binding= ActivityDifferentTasksBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+      binding= ActivityDifferentTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
-      drawerLayout = findViewById(R.id.drawerlayout)
-      navigationView = findViewById(R.id.navigationView)
 
 
       val toggle = ActionBarDrawerToggle(
-        this, drawerLayout, R.string.open, R.string.close
+        this, binding.maindrawer1, R.string.open, R.string.close
       )
-      drawerLayout.addDrawerListener(toggle)
+      binding.maindrawer1.addDrawerListener(toggle)
       toggle.syncState()
 
 
 
-      drawerLayout.addDrawerListener(toggle)
+      binding.maindrawer1.addDrawerListener(toggle)
       toggle.syncState()
-      navigationView.setNavigationItemSelectedListener { menuItem ->
+      binding.navigationView.setNavigationItemSelectedListener { menuItem ->
         // Handle navigation item clicks here
         when (menuItem.itemId) {
           R.id.imagetodo->{
@@ -95,7 +93,7 @@ class different_tasks : AppCompatActivity() {
 
         }
         }
-        drawerLayout.closeDrawers()
+        binding.maindrawer1.closeDrawers()
         true
 
 
