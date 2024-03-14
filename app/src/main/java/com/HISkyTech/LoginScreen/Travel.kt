@@ -22,28 +22,13 @@ class Travel : AppCompatActivity() {
                 val builder=AlertDialog.Builder(this@Travel)
                 builder.setTitle("Select Option")
                     .setPositiveButton("Add Task")  { dialog , which ->
-
-
-
-
-
                     }
                     .setNegativeButton("Cancel") {dialog ,which ->
                         dialog.dismiss()
                     }
+                dialog=builder.create()
+                dialog.show()
             }
+        }}
 
-
-
-
-
-
-
-
-
-
-
-
-        }
-    }
 }

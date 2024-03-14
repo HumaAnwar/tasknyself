@@ -33,7 +33,7 @@ class Food : AppCompatActivity() {
             builder.setTitle("Select Option")
 
                 .setPositiveButton("Add new Task") { dialog, which ->
-                    add_foodtask()
+                 
 
                 }
                 .setNegativeButton("Cancel") { dialog, which ->
@@ -48,58 +48,4 @@ class Food : AppCompatActivity() {
 
     }
 
-    private fun add_foodtask() {
-
-        var dialog = Dialog(this)
-        dialog.setContentView(R.layout.food_dialog)
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        dialog.setCancelable(false)
-        var ttle = dialog.findViewById<EditText>(R.id.food_name)
-        var desc = dialog.findViewById<EditText>(R.id.food_des)
-        var dat = dialog.findViewById<EditText>(R.id.fdate)
-        var quantity = dialog.findViewById<EditText>(R.id.quantity)
-        var cback = dialog.findViewById<ImageView>(R.id.fback)
-        var foodadd = dialog.findViewById<Button>(R.id.foodbtn)
-
-        cback.setOnClickListener()
-        {
-            dialog.dismiss()
-        }
-        foodadd.setOnClickListener() {
-            if (ttle.text.toString().isEmpty() || desc.text.toString().isEmpty() ||
-                dat.text.toString().isEmpty() || quantity.text.isEmpty()
-            ) {
-                Toast.makeText(this, "Please Enter All fields", Toast.LENGTH_SHORT).show()
-            } else {
-                val food_model = food_task()
-                food_model.ftitle = ttle.text.toString()
-                food_model.fdescription = desc.text.toString()
-                food_model.ftask_date = dat.text.toString()
-                food_model.fquantity = quantity.text.toString()
-                val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
-
-                db.collection("Food_Tasks").add(food_model)
-                    .addOnSuccessListener { doc ->
-                        food_model.task_id = doc.id
-                        food_model.user_id = sharedPreferences.getString("userId", "").toString()
-                        db.collection("Food_Tasks").document(doc.id).set(food_model)
-                            .addOnSuccessListener {
-                                Toast.makeText(this, "Task added", Toast.LENGTH_SHORT)
-                                    .show()
-
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(this, "Task not added", Toast.LENGTH_SHORT).show()
-                            }
-
-                    }
-            }
-            dialog.dismiss()
-        }
-
-                dialog.show()
-            }
-        }
+}
