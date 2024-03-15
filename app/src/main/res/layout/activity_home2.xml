@@ -19,7 +19,7 @@
                android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="15dp"
             android:background="#C84921"
-            android:backgroundTint="#C53EC3"
+            android:backgroundTint="#DCB3DB"
             android:id="@+id/workcv"
             app:cardCornerRadius="20dp"
             android:elevation="20dp">
@@ -48,7 +48,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="40dp"
-            android:backgroundTint="#C53EC3"
+            android:backgroundTint="#DCB3DB"
             android:layout_marginEnd="30dp"
             android:id="@+id/workadd"
             android:src="@drawable/baseline_add_24"/>
