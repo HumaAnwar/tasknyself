@@ -2,188 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#414143"
+    android:background="#BBBBED"
     android:layout_height="match_parent">
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_arrow_back_ios_24"
-        android:layout_margin="8dp"
-        android:id="@+id/back"
+        android:layout_gravity="center"
+        android:text="New Task"
+        android:textStyle="bold|italic"
+        android:textSize="24sp"
+        android:layout_marginVertical="7dp"
         />
 
-    <LinearLayout
+
+    <EditText
+        android:id="@+id/editTextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#414143"
-        android:orientation="vertical">
+        android:layout_marginTop="8dp"
+        android:hint="Title"/>
 
-        <View
-            android:layout_width="100dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="match_parent"
+        android:maxLines="3"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Description"/>
+     <EditText
+        android:id="@+id/editTextdate"
+        android:layout_width="match_parent"
+        android:maxLines="3"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Date"/>
 
-            android:background="@color/primary" />
 
-        <TextView
-            android:id="@+id/title1"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:text="Cancel"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="8dp"
-            android:text="Here is the information about your Task"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="220dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="13dp"
-            android:background="@color/primary" />
-
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="8dp"
-                android:text="Title!"
-                android:textColor="@color/primary"
-                android:textStyle="bold" />
-
-
-
-        </LinearLayout>
-
-
-
-        <TextView
-            android:id="@+id/tvFname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:text="hussain"
-            android:textColor="@color/white"/>
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Description"
-            android:textColor="@color/primary"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvCnic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:textColor="@color/white"
-            android:text="jhand sargodha janoo"
-   />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Password"
-            android:textColor="@color/primary"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/tvaddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:text="jhand sargodha janoo"
-            android:textColor="@color/white"
-        />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Category"
-            android:textColor="@color/primary"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/tvcategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:text="jhand sargodha janoo"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Priority"
-            android:textColor="@color/primary"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/tvPriority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:text="jhand sargodha janoo"
-            android:textColor="@color/white"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:id="@+id/uploadedAt"
-            android:layout_gravity="end"
-            />
-
-        <View
-            android:layout_width="220dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/primary" />
+            android:id="@+id/cancel_task"
+            android:layout_alignParentLeft="true"
+            />
 
-</LinearLayout>
- <LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:orientation="horizontal"
-     >
-     <Button
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginHorizontal="6dp"
-         android:id="@+id/edit"
-         android:layout_weight="1"
-         android:text="Edit"
-         />
-     <Button
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         android:id="@+id/delete"
-         android:layout_marginHorizontal="6dp"
-         android:text="Delete"
-         />
- </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update_Task"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/update_task"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
 </LinearLayout>

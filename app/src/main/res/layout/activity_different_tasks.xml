@@ -231,6 +231,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:cardElevation="5dp"
+            android:id="@+id/shopping"
             app:cardUseCompatPadding="true">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -247,7 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Shopping"
-                    android:id="@+id/shopping"
+
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="20dp"
                     android:textSize="20sp"
@@ -258,6 +259,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:cardElevation="5dp"
+            android:id="@+id/bills"
             app:cardUseCompatPadding="true">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -275,7 +277,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bills"
-                    android:id="@+id/bills"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="20dp"
                     android:textSize="20sp"

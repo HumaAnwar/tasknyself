@@ -34,11 +34,6 @@ class Login : AppCompatActivity() {
                 if (email.text.toString().isEmpty() && password.text.toString().isEmpty()) {
                     Toast.makeText(this@Login, "Please fill email and password", Toast.LENGTH_SHORT).show()
                 } else {
-
-
-
-
-
                     db.collection("User")
                         .whereEqualTo("mail", email.text.toString())
                         .whereEqualTo("pasword", password.text.toString())
