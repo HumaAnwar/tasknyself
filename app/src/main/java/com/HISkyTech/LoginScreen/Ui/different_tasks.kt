@@ -8,9 +8,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.drawerlayout.widget.DrawerLayout
 import com.HISkyTech.LoginScreen.Bills
-import com.HISkyTech.LoginScreen.Food
 import com.HISkyTech.LoginScreen.Home
 import com.HISkyTech.LoginScreen.Music
 import com.HISkyTech.LoginScreen.R
@@ -19,7 +17,6 @@ import com.HISkyTech.LoginScreen.Study
 import com.HISkyTech.LoginScreen.Travel
 import com.HISkyTech.LoginScreen.Work
 import com.HISkyTech.LoginScreen.databinding.ActivityDifferentTasksBinding
-import com.google.android.material.navigation.NavigationView
 
 class different_tasks : AppCompatActivity() {
     private lateinit var binding: ActivityDifferentTasksBinding
@@ -100,17 +97,18 @@ class different_tasks : AppCompatActivity() {
       }
 
       binding.work.setOnClickListener(){
-        startActivity(Intent(this@different_tasks,Work::class.java))
+
+        startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Work"))
         }
         binding.home.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Home::class.java))
         }
         binding.Music.setOnClickListener(){
-          startActivity(Intent(this@different_tasks,Music::class.java))
+          startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Music"))
         }
-        binding.food.setOnClickListener(){
+      /*  binding.food.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Food::class.java))
-        }
+        }*/
         binding.bills.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Bills::class.java))
         }

@@ -50,46 +50,7 @@ class Music : AppCompatActivity(),AdapterTask.OnItemClickListener  {
 
     private fun addTask() { // Dismiss the choice dialog
 
-        val dialog = Dialog(this, R.style.FullWidthDialog)
-        dialog.setContentView(R.layout.add_task_dialog)
-        dialog.setCancelable(false)
-        dialog.show()
 
-        var title = dialog.findViewById<EditText>(R.id.title)
-        val description = dialog.findViewById<EditText>(R.id.descript)
-        val date = dialog.findViewById<EditText>(R.id.date)
-        val catagory = dialog.findViewById<EditText>(R.id.catagory)
-        val priority = dialog.findViewById<EditText>(R.id.priority)
-        val back = dialog.findViewById<ImageView>(R.id.back)
-        val next = dialog.findViewById<Button>(R.id.btnNext) // Corrected reference
-        dialog.setCancelable(false)
-
-        back.setOnClickListener {
-            dialog.dismiss()
-        }
-        // ...
-
-
-// Check if 'next' is not null before setting the click listener
-        next.setOnClickListener {
-            if (title.text.toString().isEmpty() || description.text.toString().isEmpty() ||
-                date.text.toString().isEmpty() || catagory.text.isEmpty() || priority.text.isEmpty()
-            ) {
-                Toast.makeText(this, "Please Enter All fields", Toast.LENGTH_SHORT).show()
-            } else {
-                val model = task_model()
-                model.title = title.text.toString()
-                model.description = description.text.toString()
-                model.task_date = date.text.toString()
-                model.Catagory = catagory.text.toString()
-                model.priority = priority.text.toString()
-
-                taskAdd(model)
-                dialog.dismiss()
-
-
-            }
-        }
 // ...
 
     }
