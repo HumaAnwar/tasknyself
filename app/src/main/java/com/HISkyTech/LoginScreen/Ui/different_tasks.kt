@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import com.HISkyTech.LoginScreen.Bills
+import com.HISkyTech.LoginScreen.FoodTask
 import com.HISkyTech.LoginScreen.Home
 import com.HISkyTech.LoginScreen.Music
 import com.HISkyTech.LoginScreen.R
@@ -101,26 +102,26 @@ class different_tasks : AppCompatActivity() {
         startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Work"))
         }
         binding.home.setOnClickListener(){
-          startActivity(Intent(this@different_tasks,Home::class.java))
+          startActivity(Intent(this@different_tasks,Home::class.java).putExtra("From","Home"))
         }
         binding.Music.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Music"))
         }
-      /*  binding.food.setOnClickListener(){
-          startActivity(Intent(this@different_tasks,Food::class.java))
-        }*/
+        binding.food.setOnClickListener(){
+          startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Food"))
+        }
         binding.bills.setOnClickListener(){
-          startActivity(Intent(this@different_tasks,Bills::class.java))
+          startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Bills"))
         }
         binding.study.setOnClickListener(){
-          startActivity(Intent(this@different_tasks,Study::class.java))
+          startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Study"))
         }
         binding.travel.setOnClickListener(){
-          startActivity(Intent(this@different_tasks,Travel::class.java))
+          startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Travel"))
         }
 
         binding.shopping.setOnClickListener(){
-          startActivity(Intent(this@different_tasks,Shopping::class.java))
+          startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Shopping"))
         }
     }
   private fun shareContent(content: String) {

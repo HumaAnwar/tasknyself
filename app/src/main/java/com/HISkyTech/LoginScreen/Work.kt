@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
@@ -114,6 +115,10 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
             if (from.equals("Work")) {
                 var dialog = Dialog(this@Work)
                 dialog.setContentView(R.layout.travel_task)
+                dialog.window?.setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
                 var title=dialog.findViewById<EditText>(R.id.travel_name)
                 var description=dialog.findViewById<EditText>(R.id.travel_des)
                 var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
@@ -149,7 +154,7 @@ dialog.show()
                 dialog.setContentView(R.layout.travel_task)
       dialog.window?.setLayout(
           ViewGroup.LayoutParams.MATCH_PARENT,
-          ViewGroup.LayoutParams.WRAP_CONTENT
+          ViewGroup.LayoutParams.MATCH_PARENT
       )
 
                 var title=dialog.findViewById<EditText>(R.id.travel_name)
@@ -189,13 +194,21 @@ dialog.show()
                 var dialog = Dialog(this@Work)
 
                 dialog.setContentView(R.layout.travel_task)
+                dialog.window?.setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
                 var title=dialog.findViewById<EditText>(R.id.travel_name)
                 var description=dialog.findViewById<EditText>(R.id.travel_des)
                var dat=dialog.findViewById<EditText>(R.id.travel_date)
                 var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
+  var bk=dialog.findViewById<ImageView>(R.id.back)
 
                 dat.visibility= View.GONE
 dialog.setCancelable(false)
+            bk.setOnClickListener(){
+                dialog.dismiss()
+            }
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Music","")
