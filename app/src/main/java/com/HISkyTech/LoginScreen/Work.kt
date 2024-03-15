@@ -37,7 +37,8 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
 
         if(from.equals("Work"))
         {
-
+            binding.wt.text="WORK TASK"
+            binding.iconwrk.setImageResource(R.drawable.baseline_work_outline_24)
             db.collection("TaskCollection")
                 .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Work")
                 .get()
@@ -60,7 +61,8 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
         }
         if(from.equals("Food"))
         {
-
+            binding.wt.text="FOODD TASK"
+            binding.iconwrk.setImageResource(R.drawable.baseline_food_bank_24)
             db.collection("TaskCollection")
                 .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Food")
                 .get()
@@ -83,7 +85,8 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
         }
         if(from.equals("Music"))
         {
-
+            binding.wt.text="MUSIC TASK"
+            binding.iconwrk.setImageResource(R.drawable.baseline_music_note_24)
             db.collection("TaskCollection")
                 .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Music")
                 .get()
