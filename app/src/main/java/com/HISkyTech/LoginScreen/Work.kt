@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.collection.emptyLongSet
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.HISkyTech.LoginScreen.Adapters.AdapterTask
@@ -29,6 +30,8 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
     private var db = FirebaseFirestore.getInstance()
     private lateinit var sharedPreferences: SharedPreferences
 
+
+
     private lateinit var binding: ActivityWorkBinding
     private lateinit var dialog: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,205 +42,51 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
         var editor = sharedPreferences.edit()
         var from = intent.getStringExtra("From")
 
-
         if (from.equals("Work")) {
             binding.wt.text = "WORK TASK"
 
             binding.workcv.setCardBackgroundColor(Color.parseColor("#1B2A7A"))
             binding.iconwrk.setImageResource(R.drawable.baseline_work_outline_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Work")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-                        Toast.makeText(this@Work, taskList.size.toString(), Toast.LENGTH_SHORT)
-                            .show()
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+           workshow()
         }
         if (from.equals("Food")) {
             binding.wt.text = "FOODD TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_food_bank_24)
             binding.workcv.setCardBackgroundColor(Color.parseColor("#4F7CD1"))
 
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Food")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-                        Toast.makeText(this@Work, taskList.size.toString(), Toast.LENGTH_SHORT)
-                            .show()
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+           showfood()
         }
         if (from.equals("Music")) {
             binding.wt.text = "MUSIC TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_music_note_24)
             binding.workcv.setCardBackgroundColor(Color.parseColor("#DAC74A"))
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Music")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+            showmusic()
         }
         if (from.equals("Bill")) {
             binding.wt.text = "BILL TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_send_to_mobile_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Bills")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+           showbill()
         }
         if (from.equals("Shopping")) {
             binding.wt.text = "SHOPPING TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_shopping_cart_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Shopping")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+           showshopping()
         }
         if (from.equals("Travel")) {
             binding.wt.text = "TRAVEL TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_flight_24)
             binding.workcv.setCardBackgroundColor(Color.parseColor("#DA4A4A"))
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Travel")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+           showtravel()
         }
         if (from.equals("Study")) {
             binding.wt.text = "STUDY TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_library_books_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Study")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+           showstudy()
         }
         if (from.equals("Home")) {
             binding.wt.text = "HOME TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_add_home_work_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-                .whereEqualTo("catagory", "Home")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
-                    }
-                }
+           showhome()
         }
         binding.workadd.setOnClickListener()
         {
@@ -277,7 +126,9 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             ).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
+
                             dialog.dismiss()
+                            workshow()
                         }
 
                         .addOnFailureListener {
@@ -652,14 +503,229 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
         }
     }
 
+    private fun showmusic() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Music")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
+    private fun showbill() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Bills")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
+    private fun showshopping() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Shopping")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
+    private fun showtravel() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Travel")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
+    private fun showhome() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Home")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
+    private fun showfood() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Food")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+                    Toast.makeText(this@Work, taskList.size.toString(), Toast.LENGTH_SHORT)
+                        .show()
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
+    private fun showstudy() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Study")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
+    private fun workshow() {
+        db.collection("TaskCollection")
+            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
+            .whereEqualTo("catagory", "Work")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    var taskList = ArrayList<task_model>()
+                    for (task in task.result) {
+                        val modelTask = task.toObject(task_model::class.java)
+                        taskList.add(modelTask)
+                        taskList.sortBy { it.title }
+                    }
+
+                    Toast.makeText(this@Work, taskList.size.toString(), Toast.LENGTH_SHORT)
+                        .show()
+
+                    binding.rvwork.layoutManager = LinearLayoutManager(this)
+                    binding.rvwork.adapter = AdapterTask(this, taskList, this@Work)
+                }
+            }
+    }
+
     override fun onItemClick(taskModel: task_model) {
 
     }
 
     override fun onDeleteClick(taskModel: task_model) {
+        var from = intent.getStringExtra("From")
         db.collection("TaskCollection").document(taskModel.task_id).delete()
             .addOnSuccessListener() {
                 Toast.makeText(this@Work, "Deleted", Toast.LENGTH_SHORT).show()
+
+                if(from.equals("Work")){
+                  workshow()
+                }
+                else if(from.equals("Study")){
+                        showstudy()
+                    }
+                else if(from.equals("Food")){
+                    showfood()
+                    }
+                else if(from.equals("Home")){
+                   showhome()
+                    }
+                else if(from.equals("Travel")){
+                  showtravel()
+                    }
+                else if(from.equals("Shopping")){
+                 showshopping()
+                    }
+                else if(from.equals("Bill")){
+                 showbill()
+                    }
+                else
+                {
+                   showmusic()
+                }
+
+
+
             }
             .addOnFailureListener() {
                 Toast.makeText(this@Work, "not Deleted", Toast.LENGTH_SHORT).show()
