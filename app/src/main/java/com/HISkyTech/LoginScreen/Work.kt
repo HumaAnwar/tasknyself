@@ -736,6 +736,7 @@ showhome()
 
     override fun onEditClick(taskModel: task_model) {
         val dialog = Dialog(this@Work)
+        var from = intent.getStringExtra("From")
         dialog.setContentView(R.layout.dialog_detail_task)
         dialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
