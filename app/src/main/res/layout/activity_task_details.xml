@@ -61,13 +61,15 @@
          android:layout_height="wrap_content"
          android:text="Edit"
 
-         android:layout_marginHorizontal="40dp"
-         android:layout_marginVertical="30dp"/>
+android:id="@+id/update_task"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginVertical="30dp"/>
         <Button
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Delete"
-         android:layout_marginHorizontal="70dp"
-         android:layout_marginVertical="30dp"/>
-</LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:id="@+id/delete"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginVertical="30dp"/>
+    </LinearLayout>
 </LinearLayout>
