@@ -571,86 +571,15 @@ dialog.show()
     override fun onItemClick(taskModel: task_model) {
 
     }
-    fun setAdapter()
-    {
-        db.collection("Task")
-            .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
-            .get()
-            .addOnCompleteListener { documents ->
-                if (documents.isSuccessful) {
-                    var taskList = ArrayList<task_model>()
-                    for (document in documents.result) {
-                        val modelTask = document.toObject(task_model::class.java)
-                        taskList.add(modelTask)
 
-                    }
-
-
-                    binding.rvwork.layoutManager = LinearLayoutManager(this)
-                    binding.rvwork.adapter = AdapterTask(this, taskList,this@Work)
-                }
-
-
-            }
-    }
     override fun onDeleteClick(taskModel: task_model) {
-        db.collection("Task").document(taskModel.task_id).delete()
-            .addOnSuccessListener(){
-                Toast.makeText(this@Work, "Deleted", Toast.LENGTH_SHORT).show()
-                setAdapter()
-
-
-            }
-            .addOnFailureListener(){
-                Toast.makeText(this@Work, "not Deleted", Toast.LENGTH_SHORT).show()
-
-            }
+        TODO("Not yet implemented")
     }
 
     override fun onEditClick(taskModel: task_model) {
-        val dialog =Dialog(this@Work)
-        dialog.setContentView(R.layout.dialog_detail_task)
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialog.setCancelable(false)
-        var title=dialog.findViewById<EditText>(R.id.editTextTitle)
-        var description=dialog.findViewById<EditText>(R.id.editTextDescription)
-        var update=dialog.findViewById<Button>(R.id.update_task)
-        var cancel=dialog.findViewById<Button>(R.id.cancel_task)
-
-        title.setText(taskModel.title.toString())
-        description.setText(taskModel.description.toString())
-
-        cancel.setOnClickListener(){
-            dialog.dismiss()
-        }
-
-        update.setOnClickListener(
-        )
-        {
-
-
-            taskModel.title=title.text.toString()
-            taskModel.description=description.text.toString()
-
-
-            db.collection("Task").document(taskModel.task_id).set(taskModel)
-                .addOnSuccessListener() {
-                    Toast.makeText(this, "update successfull", Toast.LENGTH_SHORT).show()
-                    setAdapter()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "something wrong", Toast.LENGTH_SHORT).show()
-                }
-        }
-
-        dialog.show()
-if(taskModel.Catagory.equals("Work"))
-{
-
-
-}
+        TODO("Not yet implemented")
     }
-}
+
+
+    }
+
