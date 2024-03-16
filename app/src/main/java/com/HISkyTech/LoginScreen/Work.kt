@@ -2,9 +2,7 @@ package com.HISkyTech.LoginScreen
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,10 +14,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.HISkyTech.LoginScreen.Adapters.AdapterTask
 import com.HISkyTech.LoginScreen.Models.task_model
-import com.HISkyTech.LoginScreen.Ui.different_tasks
 import com.HISkyTech.LoginScreen.databinding.ActivityWorkBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -43,7 +39,6 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
         if(from.equals("Work"))
         {
             binding.wt.text="WORK TASK"
-            binding.workcv.setCardBackgroundColor(Color.parseColor("#1B2A7A"))
             binding.iconwrk.setImageResource(R.drawable.baseline_work_outline_24)
             db.collection("TaskCollection")
                 .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Work")
@@ -60,7 +55,7 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
 
                         Toast.makeText(this@Work, taskList.size.toString(), Toast.LENGTH_SHORT).show()
 
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
+                        binding.rvwork.layoutManager = GridLayoutManager(this,2)
                         binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
                     }
                 }
@@ -69,8 +64,6 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
         {
             binding.wt.text="FOODD TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_food_bank_24)
-            binding.workcv.setCardBackgroundColor(Color.parseColor("#4F7CD1"))
-
             db.collection("TaskCollection")
                 .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Food")
                 .get()
@@ -86,7 +79,7 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
 
                         Toast.makeText(this@Work, taskList.size.toString(), Toast.LENGTH_SHORT).show()
 
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
+                        binding.rvwork.layoutManager = GridLayoutManager(this,2)
                         binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
                     }
                 }
@@ -110,131 +103,13 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
 
 
 
-                      binding.rvwork.layoutManager = LinearLayoutManager(this)
+                        binding.rvwork.layoutManager = GridLayoutManager(this,2)
                         binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
                     }
                 }
         }
-        if(from.equals("Bill"))
-        {
-            binding.wt.text="BILL TASK"
-            binding.iconwrk.setImageResource(R.drawable.baseline_send_to_mobile_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Bills")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
 
 
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
-                    }
-                }
-        }
-        if(from.equals("Shopping"))
-        {
-            binding.wt.text="SHOPPING TASK"
-            binding.iconwrk.setImageResource(R.drawable.baseline_shopping_cart_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Shopping")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
-                    }
-                }
-        }
-        if(from.equals("Travel"))
-        {
-            binding.wt.text="TRAVEL TASK"
-            binding.iconwrk.setImageResource(R.drawable.baseline_flight_24)
-            binding.workcv.setCardBackgroundColor(Color.parseColor("#DA4A4A"))
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Travel")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
-                    }
-                }
-        }
-        if(from.equals("Study"))
-        {
-            binding.wt.text="STUDY TASK"
-            binding.iconwrk.setImageResource(R.drawable.baseline_library_books_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Study")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
-                    }
-                }
-        }
-        if(from.equals("Home"))
-        {
-            binding.wt.text="HOME TASK"
-            binding.iconwrk.setImageResource(R.drawable.baseline_add_home_work_24)
-            db.collection("TaskCollection")
-                .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString()).whereEqualTo("catagory","Home")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-
-                        var taskList = ArrayList<task_model>()
-                        for (task in task.result) {
-                            val modelTask = task.toObject(task_model::class.java)
-                            taskList.add(modelTask)
-                            taskList.sortBy { it.title }
-                        }
-
-
-
-                        binding.rvwork.layoutManager = LinearLayoutManager(this)
-                        binding.rvwork.adapter = AdapterTask(this, taskList,this@Work )
-                    }
-                }
-        }
         binding.workadd.setOnClickListener()
         {
             if (from.equals("Work")) {
@@ -242,15 +117,12 @@ sharedPreferences=getSharedPreferences("preference", Context.MODE_PRIVATE)
                 dialog.setContentView(R.layout.travel_task)
                 dialog.window?.setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
+                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
                 var title=dialog.findViewById<EditText>(R.id.travel_name)
                 var description=dialog.findViewById<EditText>(R.id.travel_des)
                 var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                Back.setOnClickListener(){
-                    dialog.dismiss()
-                }
+
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Work","")
@@ -282,16 +154,15 @@ dialog.show()
                 dialog.setContentView(R.layout.travel_task)
       dialog.window?.setLayout(
           ViewGroup.LayoutParams.MATCH_PARENT,
-          ViewGroup.LayoutParams.WRAP_CONTENT
+          ViewGroup.LayoutParams.MATCH_PARENT
       )
 
                 var title=dialog.findViewById<EditText>(R.id.travel_name)
                 var description=dialog.findViewById<EditText>(R.id.travel_des)
+
+
                 var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                 Back.setOnClickListener(){
-                   dialog.dismiss()
-                   }
+
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Food","")
@@ -321,21 +192,23 @@ dialog.show()
 
             if (from.equals("Music")) {
                 var dialog = Dialog(this@Work)
+
                 dialog.setContentView(R.layout.travel_task)
                 dialog.window?.setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
+                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
                 var title=dialog.findViewById<EditText>(R.id.travel_name)
                 var description=dialog.findViewById<EditText>(R.id.travel_des)
                var dat=dialog.findViewById<EditText>(R.id.travel_date)
                 var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                Back.setOnClickListener(){
-                    dialog.dismiss()
-                }
+  var bk=dialog.findViewById<ImageView>(R.id.back)
+
                 dat.visibility= View.GONE
 dialog.setCancelable(false)
+            bk.setOnClickListener(){
+                dialog.dismiss()
+            }
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Music","")
@@ -360,212 +233,15 @@ dialog.dismiss()
 
 dialog.show()
             }
-            if (from.equals("Bills")) {
-                var dialog = Dialog(this@Work)
-                dialog.setContentView(R.layout.travel_task)
-                dialog.window?.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                var title=dialog.findViewById<EditText>(R.id.travel_name)
-                var description=dialog.findViewById<EditText>(R.id.travel_des)
-               var dat=dialog.findViewById<EditText>(R.id.travel_date)
-                var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                Back.setOnClickListener(){
-                    dialog.dismiss()
-                }
-                dat.visibility= View.GONE
-dialog.setCancelable(false)
-                btnAdd.setOnClickListener()
-                {
-                    var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Bills","")
-                    db.collection("TaskCollection").add(taskmodel)
-
-                        .addOnSuccessListener {document->
-dialog.dismiss()
-                            taskmodel.task_id=document.id.toString()
-                            taskmodel.userId=sharedPreferences.getString("userId","")!!
-                            Toast.makeText(this@Work, "Succesfull add Bills task", Toast.LENGTH_SHORT).show()
-
-                            db.collection("TaskCollection").document(document.id).set(taskmodel)
-
-                        }
-
-                        .addOnFailureListener {
-                            dialog.dismiss()
-                            Toast.makeText(this@Work, "Failed", Toast.LENGTH_SHORT).show()
-                        }
-
-                }
-
-dialog.show()
-            }
-            if (from.equals("Shopping")) {
-                var dialog = Dialog(this@Work)
-                dialog.setContentView(R.layout.travel_task)
-                dialog.window?.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                var title=dialog.findViewById<EditText>(R.id.travel_name)
-                var description=dialog.findViewById<EditText>(R.id.travel_des)
-               var dat=dialog.findViewById<EditText>(R.id.travel_date)
-                var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                Back.setOnClickListener(){
-                    dialog.dismiss()
-                }
-                dat.visibility= View.GONE
-dialog.setCancelable(false)
-                btnAdd.setOnClickListener()
-                {
-                    var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Shopping","")
-                    db.collection("TaskCollection").add(taskmodel)
-
-                        .addOnSuccessListener {document->
-dialog.dismiss()
-                            taskmodel.task_id=document.id.toString()
-                            taskmodel.userId=sharedPreferences.getString("userId","")!!
-                            Toast.makeText(this@Work, "Succesfull add shopping task", Toast.LENGTH_SHORT).show()
-
-                            db.collection("TaskCollection").document(document.id).set(taskmodel)
-
-                        }
-
-                        .addOnFailureListener {
-                            dialog.dismiss()
-                            Toast.makeText(this@Work, "Failed", Toast.LENGTH_SHORT).show()
-                        }
-
-                }
-
-dialog.show()
-            }
-            if (from.equals("Travel")) {
-                var dialog = Dialog(this@Work)
-                dialog.setContentView(R.layout.travel_task)
-                dialog.window?.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                var title=dialog.findViewById<EditText>(R.id.travel_name)
-                var description=dialog.findViewById<EditText>(R.id.travel_des)
-               var dat=dialog.findViewById<EditText>(R.id.travel_date)
-                var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                Back.setOnClickListener(){
-                    dialog.dismiss()
-                }
-                dat.visibility= View.GONE
-dialog.setCancelable(false)
-                btnAdd.setOnClickListener()
-                {
-                    var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Travel","")
-                    db.collection("TaskCollection").add(taskmodel)
-
-                        .addOnSuccessListener {document->
-dialog.dismiss()
-                            taskmodel.task_id=document.id.toString()
-                            taskmodel.userId=sharedPreferences.getString("userId","")!!
-                            Toast.makeText(this@Work, "Succesfull add travel task", Toast.LENGTH_SHORT).show()
-
-                            db.collection("TaskCollection").document(document.id).set(taskmodel)
-
-                        }
-
-                        .addOnFailureListener {
-                            dialog.dismiss()
-                            Toast.makeText(this@Work, "Failed", Toast.LENGTH_SHORT).show()
-                        }
-
-                }
-
-dialog.show()
-            }
-            if (from.equals("Study")) {
-                var dialog = Dialog(this@Work)
-                dialog.setContentView(R.layout.travel_task)
-                dialog.window?.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                var title=dialog.findViewById<EditText>(R.id.travel_name)
-                var description=dialog.findViewById<EditText>(R.id.travel_des)
-               var dat=dialog.findViewById<EditText>(R.id.travel_date)
-                var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                Back.setOnClickListener(){
-                    dialog.dismiss()
-                }
-                dat.visibility= View.GONE
-dialog.setCancelable(false)
-                btnAdd.setOnClickListener()
-                {
-                    var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Study","")
-                    db.collection("TaskCollection").add(taskmodel)
-
-                        .addOnSuccessListener {document->
-dialog.dismiss()
-                            taskmodel.task_id=document.id.toString()
-                            taskmodel.userId=sharedPreferences.getString("userId","")!!
-                            Toast.makeText(this@Work, "Succesfull add study task", Toast.LENGTH_SHORT).show()
-
-                            db.collection("TaskCollection").document(document.id).set(taskmodel)
-
-                        }
-
-                        .addOnFailureListener {
-                            dialog.dismiss()
-                            Toast.makeText(this@Work, "Failed", Toast.LENGTH_SHORT).show()
-                        }
-
-                }
-
-dialog.show()
-            }
-            if (from.equals("Home")) {
-                var dialog = Dialog(this@Work)
-                dialog.setContentView(R.layout.travel_task)
-                dialog.window?.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                var title=dialog.findViewById<EditText>(R.id.travel_name)
-                var description=dialog.findViewById<EditText>(R.id.travel_des)
-               var dat=dialog.findViewById<EditText>(R.id.travel_date)
-                var btnAdd=dialog.findViewById<Button>(R.id.travel_btn)
-                var Back=dialog.findViewById<ImageView>(R.id.back)
-                Back.setOnClickListener(){
-                    dialog.dismiss()
-                }
-                dat.visibility= View.GONE
-dialog.setCancelable(false)
-                btnAdd.setOnClickListener()
-                {
-                    var taskmodel= task_model(title.text.toString(),description.text.toString(),"15-3-24","Home","")
-                    db.collection("TaskCollection").add(taskmodel)
-
-                        .addOnSuccessListener {document->
-dialog.dismiss()
-                            taskmodel.task_id=document.id.toString()
-                            taskmodel.userId=sharedPreferences.getString("userId","")!!
-                            Toast.makeText(this@Work, "Succesfull add home task", Toast.LENGTH_SHORT).show()
-
-                            db.collection("TaskCollection").document(document.id).set(taskmodel)
-
-                        }
-
-                        .addOnFailureListener {
-                            dialog.dismiss()
-                            Toast.makeText(this@Work, "Failed", Toast.LENGTH_SHORT).show()
-                        }
-
-                }
-
-dialog.show()
-            }
         }
+
+
+
+
+
+
+
+
     }
 
     override fun onItemClick(taskModel: task_model) {
@@ -573,13 +249,14 @@ dialog.show()
     }
 
     override fun onDeleteClick(taskModel: task_model) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onEditClick(taskModel: task_model) {
-        TODO("Not yet implemented")
+if(taskModel.Catagory.equals("Work"))
+{
+
+
+}
     }
-
-
-    }
-
+}
