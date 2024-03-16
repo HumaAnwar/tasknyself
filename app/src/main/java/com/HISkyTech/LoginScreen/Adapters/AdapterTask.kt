@@ -45,19 +45,11 @@ class AdapterTask ( private val context: Context, private val dataList: List<tas
         private val task_title: TextView = itemView.findViewById(R.id.task_name)
         private val container: CardView = itemView.findViewById(R.id.containeruser)
         var edit=itemView.findViewById<ImageButton>(R.id.editbtn)
-        var del=itemView.findViewById<LinearLayout>(R.id.delbtn)
-
+        var del=itemView.findViewById<ImageButton>(R.id.delbtn)
 
         fun bind(taskModel: task_model) {
 
             task_title.text = taskModel.title
-
-
-
-
-            val dateTimeFormat = SimpleDateFormat("dd MMMM yyyy, h:mm a", Locale.getDefault())
-            val formattedDateTime = dateTimeFormat.format(taskModel.createdAt.toDate())
-            itemView.findViewById<TextView>(R.id.uploadedAt).text = formattedDateTime
 
             del.setOnClickListener()
             {
@@ -68,6 +60,12 @@ class AdapterTask ( private val context: Context, private val dataList: List<tas
                 listner.onEditClick(taskModel)
             }
 
+
+            val dateTimeFormat = SimpleDateFormat("dd MMMM yyyy, h:mm a", Locale.getDefault())
+            val formattedDateTime = dateTimeFormat.format(taskModel.createdAt.toDate())
+            itemView.findViewById<TextView>(R.id.uploadedAt).text = formattedDateTime
+
+
         }
 
     }
@@ -76,6 +74,7 @@ class AdapterTask ( private val context: Context, private val dataList: List<tas
         fun notifyDataSetChanged() {
 
         }
+
     }
 
 
