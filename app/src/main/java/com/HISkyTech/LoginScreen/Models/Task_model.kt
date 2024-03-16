@@ -11,6 +11,8 @@ data class task_model(
     var Catagory:String="",
     var priority:String="",
     var task_id:String="",
+    var quantity:String="",
+    var amount:String="",
     var userId:String="",
     val createdAt: Timestamp = Timestamp.now()
 ){

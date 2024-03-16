@@ -11,16 +11,12 @@
 android:layout_margin="8dp"
     android:id="@+id/containeruser"
 >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content">
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,47 +24,23 @@ android:layout_margin="8dp"
 android:layout_marginTop="20dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginHorizontal="40dp"
+        android:layout_gravity="center"
         android:id="@+id/task_name"/>
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_edit_24"
-        android:background="#B6C7E8"
-        android:id="@+id/editbtn"
-        android:layout_alignParentEnd="true"
-        android:layout_toLeftOf="@id/task_name"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"/>
-
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginVertical="10dp"
                 android:text="25 Nov 2023"
+                android:layout_gravity="center"
                 android:layout_below="@id/task_name"
                 android:id="@+id/uploadedAt"/>
-      <ImageButton
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:src="@drawable/baseline_delete_24"
-          android:background="#B6C7E8"
-          android:id="@+id/delbtn"
-          android:layout_marginEnd="20dp"
-          android:layout_below="@id/editbtn"
-          android:layout_marginTop="10dp"
-          android:layout_alignParentEnd="true"
-          android:layout_gravity="end" />
 
 
-  </RelativeLayout>
 
 </LinearLayout>
 
 
-</RelativeLayout>
+
 
 </androidx.cardview.widget.CardView>

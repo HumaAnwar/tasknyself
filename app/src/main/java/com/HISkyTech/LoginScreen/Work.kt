@@ -180,6 +180,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
                             dialog.dismiss()
+                            showfood()
                         }
 
                         .addOnFailureListener {
@@ -233,7 +234,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             ).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
-
+                            showmusic()
                         }
 
                         .addOnFailureListener {
@@ -284,7 +285,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             ).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
-
+                            showbill()
                         }
 
                         .addOnFailureListener {
@@ -335,7 +336,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             ).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
-
+                            showshopping()
                         }
 
                         .addOnFailureListener {
@@ -386,7 +387,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             ).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
-
+ showtravel()
                         }
 
                         .addOnFailureListener {
@@ -437,7 +438,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             ).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
-
+showstudy()
                         }
 
                         .addOnFailureListener {
@@ -488,7 +489,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             ).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
-
+showhome()
                         }
 
                         .addOnFailureListener {
@@ -764,7 +765,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
             taskModel.description = description.text.toString()
 
 
-            db.collection("Task").document(taskModel.task_id).set(taskModel)
+            db.collection("TaskCollection").document(taskModel.task_id).set(taskModel)
                 .addOnSuccessListener() {
                     Toast.makeText(this, "update successfull", Toast.LENGTH_SHORT).show()
                 }
