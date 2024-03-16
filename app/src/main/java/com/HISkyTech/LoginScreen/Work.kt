@@ -747,7 +747,7 @@ showhome()
         var date = dialog.findViewById<EditText>(R.id.editTextdate)
         var update = dialog.findViewById<Button>(R.id.update_task)
         var cancel = dialog.findViewById<Button>(R.id.cancel_task)
- var delete = dialog.findViewById<Button>(R.id.delete)
+        var delete = dialog.findViewById<Button>(R.id.delete)
 
         title.setText(taskModel.title.toString())
         description.setText(taskModel.description.toString())
