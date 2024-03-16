@@ -736,6 +736,7 @@ showhome()
 
     override fun onEditClick(taskModel: task_model) {
         val dialog = Dialog(this@Work)
+        var from = intent.getStringExtra("From")
         dialog.setContentView(R.layout.dialog_detail_task)
         dialog.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -768,6 +769,33 @@ showhome()
             db.collection("TaskCollection").document(taskModel.task_id).set(taskModel)
                 .addOnSuccessListener() {
                     Toast.makeText(this, "update successfull", Toast.LENGTH_SHORT).show()
+
+                    if(from.equals("Work")){
+                        workshow()
+                    }
+                    else if(from.equals("Study")){
+                        showstudy()
+                    }
+                    else if(from.equals("Food")){
+                        showfood()
+                    }
+                    else if(from.equals("Home")){
+                        showhome()
+                    }
+                    else if(from.equals("Travel")){
+                        showtravel()
+                    }
+                    else if(from.equals("Shopping")){
+                        showshopping()
+                    }
+                    else if(from.equals("Bill")){
+                        showbill()
+                    }
+                    else
+                    {
+                        showmusic()
+                    }
+                    dialog.dismiss()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "something wrong", Toast.LENGTH_SHORT).show()
