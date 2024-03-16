@@ -62,7 +62,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
             binding.workcv.setCardBackgroundColor(Color.parseColor("#DAC74A"))
             showmusic()
         }
-        if (from.equals("Bill")) {
+        if (from.equals("Bills")) {
             binding.wt.text = "BILL TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_send_to_mobile_24)
            showbill()
@@ -100,10 +100,15 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 var title = dialog.findViewById<EditText>(R.id.travel_name)
                 var description = dialog.findViewById<EditText>(R.id.travel_des)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
+                Am.visibility=View.GONE
+               quant.visibility=View.GONE
+
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel = task_model(
@@ -153,14 +158,20 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 var title = dialog.findViewById<EditText>(R.id.travel_name)
                 var description = dialog.findViewById<EditText>(R.id.travel_des)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
+
+                Am.visibility = View.GONE
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel = task_model(
                         title.text.toString(),
+                         quant.text.toString(),
+
                         description.text.toString(),
                         "15-3-24",
                         "Food",
@@ -204,6 +215,9 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 )
                 var title = dialog.findViewById<EditText>(R.id.travel_name)
                 var description = dialog.findViewById<EditText>(R.id.travel_des)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
+
                 var dat = dialog.findViewById<EditText>(R.id.travel_date)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
@@ -211,6 +225,9 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                     dialog.dismiss()
                 }
                 dat.visibility = View.GONE
+                 quant.visibility = View.GONE
+                 Am.visibility = View.GONE
+
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
@@ -256,18 +273,22 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 var title = dialog.findViewById<EditText>(R.id.travel_name)
                 var description = dialog.findViewById<EditText>(R.id.travel_des)
                 var dat = dialog.findViewById<EditText>(R.id.travel_date)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
                 dat.visibility = View.GONE
+                 quant.visibility = View.GONE
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel = task_model(
                         title.text.toString(),
                         description.text.toString(),
+                        Am.text.toString(),
                         "15-3-24",
                         "Bills",
                         ""
@@ -307,18 +328,24 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 var title = dialog.findViewById<EditText>(R.id.travel_name)
                 var description = dialog.findViewById<EditText>(R.id.travel_des)
                 var dat = dialog.findViewById<EditText>(R.id.travel_date)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
                 dat.visibility = View.GONE
+
+
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel = task_model(
                         title.text.toString(),
                         description.text.toString(),
+                        Am.text.toString(),
+                        quant.text.toString(),
                         "15-3-24",
                         "Shopping",
                         ""
@@ -359,17 +386,23 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 var description = dialog.findViewById<EditText>(R.id.travel_des)
                 var dat = dialog.findViewById<EditText>(R.id.travel_date)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
                 dat.visibility = View.GONE
+
+                quant.visibility = View.GONE
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
                     var taskmodel = task_model(
                         title.text.toString(),
                         description.text.toString(),
+                        Am.text.toString(),
+
                         "15-3-24",
                         "Travel",
                         ""
@@ -411,10 +444,15 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 var dat = dialog.findViewById<EditText>(R.id.travel_date)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
                 dat.visibility = View.GONE
+                 Am.visibility = View.GONE
+                 quant.visibility = View.GONE
+
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
@@ -461,11 +499,16 @@ showstudy()
                 var description = dialog.findViewById<EditText>(R.id.travel_des)
                 var dat = dialog.findViewById<EditText>(R.id.travel_date)
                 var btnAdd = dialog.findViewById<Button>(R.id.travel_btn)
+                var Am=dialog.findViewById<EditText>(R.id.amount)
+                var quant=dialog.findViewById<EditText>(R.id.quantity)
                 var Back = dialog.findViewById<ImageView>(R.id.back)
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
                 dat.visibility = View.GONE
+                Am.visibility = View.GONE
+                quant.visibility = View.GONE
+
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
