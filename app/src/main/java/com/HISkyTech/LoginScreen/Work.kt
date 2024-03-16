@@ -690,7 +690,7 @@ showhome()
     }
 
     override fun onItemClick(taskModel: task_model) {
-
+       startActivity(Intent(this@Work,task_details::class.java).putExtra("taskModel",taskModel.toString()))
     }
 
     override fun onDeleteClick(taskModel: task_model) {
@@ -747,6 +747,7 @@ showhome()
         var date = dialog.findViewById<EditText>(R.id.editTextdate)
         var update = dialog.findViewById<Button>(R.id.update_task)
         var cancel = dialog.findViewById<Button>(R.id.cancel_task)
+ var delete = dialog.findViewById<Button>(R.id.delete)
 
         title.setText(taskModel.title.toString())
         description.setText(taskModel.description.toString())
@@ -768,6 +769,7 @@ showhome()
             db.collection("TaskCollection").document(taskModel.task_id).set(taskModel)
                 .addOnSuccessListener() {
                     Toast.makeText(this, "update successfull", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "something wrong", Toast.LENGTH_SHORT).show()

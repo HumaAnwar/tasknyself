@@ -17,77 +17,65 @@ import com.HISkyTech.LoginScreen.R
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+class AdapterTask ( private val context: Context, private val dataList: List<task_model>,private val listner:OnItemClickListener) :
+  RecyclerView.Adapter<AdapterTask.ViewHolder>() {
+    interface OnItemClickListener {
 
-    class AdapterTask (
-        private val context: Context,
-        private val dataList: List<task_model>, val listener: OnItemClickListener
-    ) : RecyclerView.Adapter<AdapterTask.ViewHolder>() {
-        interface OnItemClickListener {
-
-            fun onItemClick(taskModel: task_model)
-            fun onDeleteClick(taskModel: task_model)
-            fun onEditClick(taskModel: task_model)
-
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view = LayoutInflater.from(context).inflate(R.layout.task_list, parent, false)
-            return ViewHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(dataList[position])
-        }
-
-        override fun getItemCount(): Int {
-            return dataList.size
-        }
-
-
-        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            private val task_title: TextView = itemView.findViewById(R.id.task_name)
-            private val container: CardView = itemView.findViewById(R.id.containeruser)
-            var edit=itemView.findViewById<ImageButton>(R.id.editbtn)
-            var del=itemView.findViewById<ImageButton>(R.id.delbtn)
-
-
-
-            init {
-
-                container.setOnClickListener { listener.onItemClick(dataList[adapterPosition]) }
-
-            }
-            @SuppressLint("SuspiciousIndentation")
-            fun bind(taskModel: task_model) {
-
-                task_title.text = taskModel.title
-
-
-
-
-                val dateTimeFormat = SimpleDateFormat("dd MMMM yyyy, h:mm a", Locale.getDefault())
-                val formattedDateTime = dateTimeFormat.format(taskModel.createdAt.toDate())
-                itemView.findViewById<TextView>(R.id.uploadedAt).text = formattedDateTime
-
-                del.setOnClickListener()
-                {
-                    listener.onDeleteClick(taskModel)
-                }
-                edit.setOnClickListener()
-                {
-                    listener.onEditClick(taskModel)
-                }
-
-            }
-
-        }
-
-        companion object {
-            fun notifyDataSetChanged() {
-
-            }
-        }
-
+        fun onItemClick(taskModel: task_model)
+        fun onDeleteClick(taskModel: task_model)
+        fun onEditClick(taskModel: task_model)
 
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.task_list, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(dataList[position])
+    }
+
+    override fun getItemCount(): Int {
+        return dataList.size
+    }
+
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val task_title: TextView = itemView.findViewById(R.id.task_name)
+        private val container: CardView = itemView.findViewById(R.id.containeruser)
+        var edit=itemView.findViewById<ImageButton>(R.id.editbtn)
+        var del=itemView.findViewById<ImageButton>(R.id.delete)
+
+        fun bind(taskModel: task_model) {
+
+            task_title.text = taskModel.title
+
+            del.setOnClickListener()
+            {
+                listner.onDeleteClick(taskModel)
+            }
+            edit.setOnClickListener()
+            {
+                listner.onEditClick(taskModel)
+            }
+
+
+            val dateTimeFormat = SimpleDateFormat("dd MMMM yyyy, h:mm a", Locale.getDefault())
+            val formattedDateTime = dateTimeFormat.format(taskModel.createdAt.toDate())
+            itemView.findViewById<TextView>(R.id.uploadedAt).text = formattedDateTime
+
+
+        }
+
+    }
+
+    companion object {
+        fun notifyDataSetChanged() {
+
+        }
+
+    }
+
+
+}
