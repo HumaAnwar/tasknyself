@@ -32,7 +32,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
 
 
-    private lateinit var binding: ActivityWorkBinding
+    private lateinit var binding:ActivityWorkBinding
     private lateinit var dialog: AlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityWorkBinding.inflate(layoutInflater)

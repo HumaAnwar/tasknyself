@@ -22,6 +22,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Title"/>
+ <EditText
+        android:id="@+id/editTextamount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Amount"/>
+    <EditText
+        android:id="@+id/editTextquantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Quantity"/>
 
     <EditText
         android:id="@+id/editTextDescription"
