@@ -6,13 +6,20 @@
     android:layout_height="match_parent"
     android:id="@+id/maindrawer1"
     tools:context=".Ui.different_tasks">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+app:title="list Details"
+
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:navigationIcon="@drawable/baseline_format_align_left_24"
+            />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -285,12 +292,13 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </LinearLayout>
-    </ScrollView>
+
 
           <com.google.android.material.navigation.NavigationView
-         android:id="@+id/navigationView"
+         android:id="@+id/navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+
          android:layout_gravity="start"
          android:fitsSystemWindows="true"
         app:headerLayout="@layout/activity_left"

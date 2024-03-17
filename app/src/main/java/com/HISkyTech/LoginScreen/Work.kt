@@ -709,6 +709,7 @@ showhome()
     }
 
     private fun workshow() {
+
         db.collection("TaskCollection")
             .whereEqualTo("userId", sharedPreferences.getString("userId", "").toString())
             .whereEqualTo("catagory", "Work")
@@ -743,6 +744,7 @@ showhome()
                 Toast.makeText(this@Work, "Deleted", Toast.LENGTH_SHORT).show()
 
                 if(from.equals("Work")){
+
                   workshow()
                 }
                 else if(from.equals("Study")){
@@ -815,6 +817,7 @@ showhome()
                     Toast.makeText(this, "update successfull", Toast.LENGTH_SHORT).show()
 
                     if(from.equals("Work")){
+
                         workshow()
                     }
                     else if(from.equals("Study")){

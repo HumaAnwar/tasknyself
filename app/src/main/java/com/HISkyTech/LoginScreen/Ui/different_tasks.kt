@@ -2,13 +2,17 @@ package com.HISkyTech.LoginScreen.Ui
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.drawerlayout.widget.DrawerLayout
 import com.HISkyTech.LoginScreen.Bills
+import com.HISkyTech.LoginScreen.FoodTask
 import com.HISkyTech.LoginScreen.Home
 import com.HISkyTech.LoginScreen.Music
 import com.HISkyTech.LoginScreen.R
@@ -17,10 +21,12 @@ import com.HISkyTech.LoginScreen.Study
 import com.HISkyTech.LoginScreen.Travel
 import com.HISkyTech.LoginScreen.Work
 import com.HISkyTech.LoginScreen.databinding.ActivityDifferentTasksBinding
+import com.google.android.material.navigation.NavigationView
 
 class different_tasks : AppCompatActivity() {
     private lateinit var binding: ActivityDifferentTasksBinding
-  private lateinit var dialog: Dialog
+  lateinit var toggle: ActionBarDrawerToggle
+
   private var isDarkTheme: Boolean = false
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,18 +36,14 @@ class different_tasks : AppCompatActivity() {
 
 
 
-
-      val toggle = ActionBarDrawerToggle(
-        this, binding.maindrawer1, R.string.open, R.string.close
-      )
+      val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
+      val editor = sharedPreferences.edit()
+      val toggle = ActionBarDrawerToggle(this, binding.maindrawer1,binding.toolbar, R.string.open, R.string.close)
       binding.maindrawer1.addDrawerListener(toggle)
       toggle.syncState()
+      supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-
-      binding.maindrawer1.addDrawerListener(toggle)
-      toggle.syncState()
-      binding.navigationView.setNavigationItemSelectedListener { menuItem ->
+      binding.navigation.setNavigationItemSelectedListener { menuItem ->
         // Handle navigation item clicks here
         when (menuItem.itemId) {
           R.id.imagetodo->{
@@ -49,7 +51,7 @@ class different_tasks : AppCompatActivity() {
 
           }
           R.id.home -> {
-            Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+           startActivity(Intent(this,FoodTask::class.java))
 
           }
 
@@ -65,7 +67,8 @@ class different_tasks : AppCompatActivity() {
           R.id.share -> {
             shareContent("This is the content you want to share.")
 
-          }  R.id.rat -> {
+          }
+          R.id.rat -> {
           Toast.makeText(this, "Rate us Clicked", Toast.LENGTH_SHORT).show()
 
         }
@@ -79,13 +82,21 @@ class different_tasks : AppCompatActivity() {
             }
 
 
-          }   R.id.noti -> {
+          }
+          R.id.noti -> {
+
           Toast.makeText(this, "Notification Clicked", Toast.LENGTH_SHORT).show()
 
         } R.id.rem -> {
           Toast.makeText(this, "Reminder Clicked", Toast.LENGTH_SHORT).show()
 
-        } R.id.logout -> {
+        }
+          R.id.logout -> {
+
+          editor.putBoolean("IsLog", false)
+          editor.apply()
+          startActivity(Intent(this,Login::class.java))
+
           Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
 
         }
@@ -123,6 +134,12 @@ class different_tasks : AppCompatActivity() {
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Shopping"))
         }
     }}
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if(toggle.onOptionsItemSelected(item)) {
+      return true
+    }
+    return super.onOptionsItemSelected(item)
+  }
   private fun shareContent(content: String) {
 
     val intent = Intent(Intent.ACTION_SEND)
