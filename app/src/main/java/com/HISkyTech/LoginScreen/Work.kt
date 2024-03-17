@@ -335,7 +335,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 Back.setOnClickListener() {
                     dialog.dismiss()
                 }
-                dat.visibility = View.GONE
+
 
 
                 dialog.setCancelable(false)
@@ -734,7 +734,7 @@ showhome()
     }
 
     override fun onItemClick(taskModel: task_model) {
-       startActivity(Intent(this@Work,task_details::class.java).putExtra("taskModel",taskModel.toString()))
+
     }
 
     override fun onDeleteClick(taskModel: task_model) {
@@ -790,11 +790,21 @@ showhome()
         dialog.setCancelable(false)
         var title = dialog.findViewById<EditText>(R.id.editTextTitle)
         var description = dialog.findViewById<EditText>(R.id.editTextDescription)
+        var quantity = dialog.findViewById<EditText>(R.id.editTextquantity)
+        var amount = dialog.findViewById<EditText>(R.id.editTextamount)
         var date = dialog.findViewById<EditText>(R.id.editTextdate)
         var update = dialog.findViewById<Button>(R.id.update_task)
         var cancel = dialog.findViewById<Button>(R.id.cancel_task)
         var delete = dialog.findViewById<Button>(R.id.delete)
+        if(from.equals("Work"))
+      {
+    amount.visibility=View.GONE
+    quantity.visibility=View.GONE
+      }
+        else if (from.equals("Food")){
+            amount.visibility = View.GONE
 
+        }
         title.setText(taskModel.title.toString())
         description.setText(taskModel.description.toString())
 
@@ -806,11 +816,8 @@ showhome()
         update.setOnClickListener(
         )
         {
-
-
             taskModel.title = title.text.toString()
             taskModel.description = description.text.toString()
-
 
             db.collection("TaskCollection").document(taskModel.task_id).set(taskModel)
                 .addOnSuccessListener() {
