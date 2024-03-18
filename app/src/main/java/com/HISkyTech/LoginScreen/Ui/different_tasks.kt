@@ -2,13 +2,19 @@ package com.HISkyTech.LoginScreen.Ui
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import com.HISkyTech.LoginScreen.Bills
@@ -55,21 +61,64 @@ class different_tasks : AppCompatActivity() {
 
           }
 
-          R.id.contact -> {
-            Toast.makeText(this, "Contact us clicked", Toast.LENGTH_SHORT)
-              .show()
-          }
+          R.id.contactUsButton -> {
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.contactus, null)
+            val dialogBuilder = AlertDialog.Builder(this)
+              .setView(dialogView)
+              .setCancelable(true)
+            val dialog = dialogBuilder.create()
+            dialog.show()
+
+            dialogView.findViewById<TextView>(R.id.phoneno).setOnClickListener {
+              val phoneNumber = "+923227970173"
+              val intent = Intent(Intent.ACTION_DIAL)
+              intent.data = Uri.parse("tel:$phoneNumber")
+              startActivity(intent)
+              dialog.dismiss()
+            }
+
+            dialogView.findViewById<TextView>(R.id.mail).setOnClickListener {
+              val email = "huma01122@gmail.com"
+              val subject = "Regarding your app"
+              val intent = Intent(Intent.ACTION_SENDTO)
+              intent.data = Uri.parse("mailto:$email?subject=$subject")
+              startActivity(intent)
+              dialog.dismiss()
+            }
+
+            dialogView.findViewById<TextView>(R.id.whtsapno).setOnClickListener {
+              val phoneNumber = "+923227970173"
+              val subject = "Humiii is here"
+              val url = "https://api.whatsapp.com/send?phone=$phoneNumber"
+              val intent = Intent(Intent.ACTION_VIEW)
+              intent.data = Uri.parse(url)
+              startActivity(intent)
+              dialog.dismiss()
+            }
+
+        }
+
 
           R.id.fav -> {
             Toast.makeText(this, "Favorite clicked", Toast.LENGTH_SHORT).show()
           }
 
           R.id.share -> {
-            shareContent("This is the content you want to share.")
+            val appPackageName = "com.tencent.ig"
+            try {
+              startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+            } catch (e: ActivityNotFoundException) {
+              startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+            }
 
           }
           R.id.rat -> {
-          Toast.makeText(this, "Rate us Clicked", Toast.LENGTH_SHORT).show()
+            val appPackageName = "com.tencent.ig"
+            try {
+              startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+            } catch (e: ActivityNotFoundException) {
+              startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
+            }
 
         }
           R.id.theme -> {
@@ -87,8 +136,6 @@ class different_tasks : AppCompatActivity() {
 
           Toast.makeText(this, "Notification Clicked", Toast.LENGTH_SHORT).show()
 
-        } R.id.rem -> {
-          Toast.makeText(this, "Reminder Clicked", Toast.LENGTH_SHORT).show()
 
         }
           R.id.logout -> {
@@ -140,15 +187,7 @@ class different_tasks : AppCompatActivity() {
     }
     return super.onOptionsItemSelected(item)
   }
-  private fun shareContent(content: String) {
 
-    val intent = Intent(Intent.ACTION_SEND)
-    intent.type = "text/plain"
-    intent.putExtra(Intent.EXTRA_TEXT, content)
-    val chooserIntent = Intent.createChooser(intent, "Share via")
-
-    startActivity(chooserIntent)
-  }
 
 
 }

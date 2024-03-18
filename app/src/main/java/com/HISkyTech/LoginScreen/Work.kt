@@ -111,24 +111,14 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
-                        title.text.toString(),
-                        description.text.toString(),
-                        "15-3-24",
-                        "Work",
-                        ""
-                    )
+                    var taskmodel = task_model(title.text.toString(), description.text.toString(), "15-3-24", "Work", "")
                     db.collection("TaskCollection").add(taskmodel)
 
                         .addOnSuccessListener { document ->
 
                             taskmodel.task_id = document.id.toString()
                             taskmodel.userId = sharedPreferences.getString("userId", "")!!
-                            Toast.makeText(
-                                this@Work,
-                                "Succesfull add work task",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this@Work, "Succesfull add work task", Toast.LENGTH_SHORT).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
 
@@ -356,11 +346,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             dialog.dismiss()
                             taskmodel.task_id = document.id.toString()
                             taskmodel.userId = sharedPreferences.getString("userId", "")!!
-                            Toast.makeText(
-                                this@Work,
-                                "Succesfull add shopping task",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this@Work, "Succesfull add shopping task", Toast.LENGTH_SHORT).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
                             showshopping()

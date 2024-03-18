@@ -25,7 +25,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter Name"
+            android:text="Enter Name"
             android:id="@+id/ename"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
