@@ -57,7 +57,7 @@ class different_tasks : AppCompatActivity() {
 
           }
           R.id.home -> {
-           startActivity(Intent(this,FoodTask::class.java))
+           startActivity(Intent(this,Home::class.java))
 
           }
 

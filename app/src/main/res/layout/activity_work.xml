@@ -46,7 +46,8 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:backgroundTint="#1B2A7A"
+            android:background="#C84921"
+            android:backgroundTint="#4F7CD1"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="40dp"

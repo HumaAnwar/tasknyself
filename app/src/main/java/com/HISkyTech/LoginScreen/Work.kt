@@ -2,9 +2,11 @@ package com.HISkyTech.LoginScreen
 
 import android.app.Dialog
 import android.content.Context
+import androidx.core.content.ContextCompat
+
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
+
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -44,50 +46,46 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
         if (from.equals("Work")) {
             binding.wt.text = "WORK TASK"
-
-            binding.workcv.setCardBackgroundColor(Color.parseColor("#1B2A7A"))
             binding.iconwrk.setImageResource(R.drawable.baseline_work_outline_24)
-           workshow()
+            workshow()
         }
-        if (from.equals("Food")) {
+        else if (from.equals("Food")) {
+            binding.workcv.setCardBackgroundColor(ContextCompat.getColor(this, R.color.yellow))
             binding.wt.text = "FOODD TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_food_bank_24)
-            binding.workcv.setCardBackgroundColor(Color.parseColor("#4F7CD1"))
-
-           showfood()
+            showfood()
         }
-        if (from.equals("Music")) {
+        else if (from.equals("Music")) {
             binding.wt.text = "MUSIC TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_music_note_24)
-            binding.workcv.setCardBackgroundColor(Color.parseColor("#DAC74A"))
             showmusic()
         }
-        if (from.equals("Bills")) {
+        else if (from.equals("Bills")) {
             binding.wt.text = "BILL TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_send_to_mobile_24)
-           showbill()
+            showbill()
         }
-        if (from.equals("Shopping")) {
+        else if (from.equals("Shopping")) {
             binding.wt.text = "SHOPPING TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_shopping_cart_24)
-           showshopping()
+            showshopping()
         }
-        if (from.equals("Travel")) {
+        else if (from.equals("Travel")) {
             binding.wt.text = "TRAVEL TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_flight_24)
-            binding.workcv.setCardBackgroundColor(Color.parseColor("#DA4A4A"))
-           showtravel()
+            showtravel()
         }
-        if (from.equals("Study")) {
+        else if (from.equals("Study")) {
             binding.wt.text = "STUDY TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_library_books_24)
-           showstudy()
+            showstudy()
         }
-        if (from.equals("Home")) {
+        else if (from.equals("Home")) {
             binding.wt.text = "HOME TASK"
             binding.iconwrk.setImageResource(R.drawable.baseline_add_home_work_24)
-           showhome()
+            showhome()
         }
+
         binding.workadd.setOnClickListener()
         {
             if (from.equals("Work")) {
@@ -158,15 +156,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 Am.visibility = View.GONE
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
-                        title.text.toString(),
-                         quant.text.toString(),
-
-                        description.text.toString(),
-                        "15-3-24",
-                        "Food",
-                        ""
-                    )
+                    var taskmodel = task_model(title.text.toString(), quant.text.toString(), description.text.toString(), "15-3-24", "Food", "")
                     db.collection("TaskCollection").add(taskmodel)
 
                         .addOnSuccessListener { document ->
@@ -221,24 +211,14 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
-                        title.text.toString(),
-                        description.text.toString(),
-                        "15-3-24",
-                        "Music",
-                        ""
-                    )
+                    var taskmodel = task_model(title.text.toString(), description.text.toString(), "15-3-24", "Music", "")
                     db.collection("TaskCollection").add(taskmodel)
 
                         .addOnSuccessListener { document ->
                             dialog.dismiss()
                             taskmodel.task_id = document.id.toString()
                             taskmodel.userId = sharedPreferences.getString("userId", "")!!
-                            Toast.makeText(
-                                this@Work,
-                                "Succesfull add work task",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this@Work, "Succesfull add work task", Toast.LENGTH_SHORT).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
                             showmusic()
@@ -782,15 +762,7 @@ showhome()
         var update = dialog.findViewById<Button>(R.id.update_task)
         var cancel = dialog.findViewById<Button>(R.id.cancel_task)
         var delete = dialog.findViewById<Button>(R.id.delete)
-        if(from.equals("Work"))
-      {
-    amount.visibility=View.GONE
-    quantity.visibility=View.GONE
-      }
-        else if (from.equals("Food")){
-            amount.visibility = View.GONE
 
-        }
         title.setText(taskModel.title.toString())
         description.setText(taskModel.description.toString())
 
