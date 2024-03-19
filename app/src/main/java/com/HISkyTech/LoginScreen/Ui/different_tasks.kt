@@ -104,7 +104,15 @@ class different_tasks : AppCompatActivity() {
           }
 
           R.id.share -> {
-            shareContent("This is the content you want to share.")
+            val content = "https://play.google.com/store/apps/details?id=com.tencent.ig"
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, content)
+            val chooserIntent = Intent.createChooser(intent, "Share via")
+
+            startActivity(chooserIntent)
+
 
           }
           R.id.rat -> {
@@ -182,15 +190,7 @@ class different_tasks : AppCompatActivity() {
     }
     return super.onOptionsItemSelected(item)
   }
-  private fun shareContent(content: String) {
 
-    val intent = Intent(Intent.ACTION_SEND)
-    intent.type = "text/plain"
-    intent.putExtra(Intent.EXTRA_TEXT, content)
-    val chooserIntent = Intent.createChooser(intent, "Share via")
-
-    startActivity(chooserIntent)
-  }
 
 
 }
