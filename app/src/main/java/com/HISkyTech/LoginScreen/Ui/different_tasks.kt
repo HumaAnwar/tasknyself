@@ -70,7 +70,7 @@ class different_tasks : AppCompatActivity() {
             dialog.show()
 
             dialogView.findViewById<TextView>(R.id.phoneno).setOnClickListener {
-              val phoneNumber = "+923227970173"
+              val phoneNumber = "+923336052711"
               val intent = Intent(Intent.ACTION_DIAL)
               intent.data = Uri.parse("tel:$phoneNumber")
               startActivity(intent)
@@ -104,12 +104,7 @@ class different_tasks : AppCompatActivity() {
           }
 
           R.id.share -> {
-            val appPackageName = "com.tencent.ig"
-            try {
-              startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
-            } catch (e: ActivityNotFoundException) {
-              startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")))
-            }
+            shareContent("This is the content you want to share.")
 
           }
           R.id.rat -> {
@@ -187,7 +182,15 @@ class different_tasks : AppCompatActivity() {
     }
     return super.onOptionsItemSelected(item)
   }
+  private fun shareContent(content: String) {
 
+    val intent = Intent(Intent.ACTION_SEND)
+    intent.type = "text/plain"
+    intent.putExtra(Intent.EXTRA_TEXT, content)
+    val chooserIntent = Intent.createChooser(intent, "Share via")
+
+    startActivity(chooserIntent)
+  }
 
 
 }
