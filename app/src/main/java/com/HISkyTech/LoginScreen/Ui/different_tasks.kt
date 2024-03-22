@@ -27,6 +27,8 @@ import com.HISkyTech.LoginScreen.Study
 import com.HISkyTech.LoginScreen.Travel
 import com.HISkyTech.LoginScreen.Work
 import com.HISkyTech.LoginScreen.databinding.ActivityDifferentTasksBinding
+import com.HISkyTech.LoginScreen.personal
+import com.HISkyTech.LoginScreen.profilemy
 import com.google.android.material.navigation.NavigationView
 
 class different_tasks : AppCompatActivity() {
@@ -42,7 +44,7 @@ class different_tasks : AppCompatActivity() {
 
 
 
-      val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
+      val sharedPreferences = getSharedPreferences("preference", MODE_PRIVATE)
       val editor = sharedPreferences.edit()
       val toggle = ActionBarDrawerToggle(this, binding.maindrawer1,binding.toolbar, R.string.open, R.string.close)
       binding.maindrawer1.addDrawerListener(toggle)
@@ -57,7 +59,7 @@ class different_tasks : AppCompatActivity() {
 
           }
           R.id.home -> {
-           startActivity(Intent(this,Home::class.java))
+           startActivity(Intent(this,profilemy::class.java))
 
           }
 
@@ -100,7 +102,7 @@ class different_tasks : AppCompatActivity() {
 
 
           R.id.fav -> {
-            Toast.makeText(this, "Favorite clicked", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this,personal::class.java))
           }
 
           R.id.share -> {

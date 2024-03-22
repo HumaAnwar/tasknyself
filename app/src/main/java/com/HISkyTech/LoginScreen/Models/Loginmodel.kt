@@ -1,6 +1,6 @@
 package com.HISkyTech.LoginScreen.Models
 
-data class loginmodel(
+data class Loginmodel(
 
     var mail:String="",
     var pasword:String="",

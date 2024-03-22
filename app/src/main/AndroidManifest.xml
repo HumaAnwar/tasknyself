@@ -15,16 +15,16 @@
         android:theme="@style/Theme.LoginScreen"
         tools:targetApi="31">
         <activity
-            android:name=".task_details"
+            android:name=".profilemy"
             android:exported="false" />
+
+        <activity
+            android:name=".personal"
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".FoodTask"
-            android:exported="false" />
-        <activity
-            android:name=".Ui.Foodtask"
-            android:exported="false" />
-        <activity
-            android:name=".Models.FoodTask"
             android:exported="false" />
         <activity
             android:name=".Bills"
@@ -37,9 +37,6 @@
             android:exported="false" />
         <activity
             android:name=".Study"
-            android:exported="false" />
-        <activity
-            android:name=".Food"
             android:exported="false" />
         <activity
             android:name=".Music"
@@ -59,6 +56,7 @@
         <activity
             android:name=".Ui.Splash_screen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -24,7 +24,7 @@ class Login : AppCompatActivity() {
         binding.password
         binding.imageViewEye
         binding.signup.setOnClickListener() {
-            startActivity(Intent(this, signup::class.java))
+            startActivity(Intent(this, Signup::class.java))
         }
 
 

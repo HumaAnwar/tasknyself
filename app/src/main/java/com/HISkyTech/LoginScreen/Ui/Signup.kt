@@ -7,12 +7,12 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Toast
 import com.HISkyTech.LoginScreen.databinding.ActivitySignupBinding
-import com.HISkyTech.LoginScreen.Models.loginmodel
+import com.HISkyTech.LoginScreen.Models.Loginmodel
 import com.HISkyTech.LoginScreen.R
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
-class signup : AppCompatActivity() {
+class Signup : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private var db = Firebase.firestore
     private var isPasswordVisible = false
@@ -27,18 +27,18 @@ class signup : AppCompatActivity() {
         binding.apply {
             signup.setOnClickListener() {
 
-                var usermodel = loginmodel()
+                var usermodel = Loginmodel()
 
                 if (email.text.toString().isEmpty() && password.text.toString()
                         .isEmpty() && name.text.toString().isEmpty()
                 ) {
-                    Toast.makeText(this@signup, "please Fill name and email", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@Signup, "please Fill name and email", Toast.LENGTH_SHORT)
                         .show()
                 } else if (password.text.toString().length < 6) {
-                    Toast.makeText(this@signup, "Invalid password format", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@Signup, "Invalid password format", Toast.LENGTH_SHORT)
                         .show()
                 } else if (password.text.toString() != confirmpassword.text.toString()) {
-                    Toast.makeText(this@signup, "password not matched", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Signup, "password not matched", Toast.LENGTH_SHORT).show()
                 } else {
                     usermodel.mail = email.text.toString()
                     usermodel.pasword = password.text.toString()
@@ -51,16 +51,16 @@ class signup : AppCompatActivity() {
                             db.collection("User").document(documentreference.id).set(usermodel)
 
 
-                            Toast.makeText(this@signup, "SignUp Successfull", Toast.LENGTH_SHORT)
+                            Toast.makeText(this@Signup, "SignUp Successfull", Toast.LENGTH_SHORT)
                                 .show()
-                            startActivity(Intent(this@signup, Login::class.java))
+                            startActivity(Intent(this@Signup, Login::class.java))
 
                         }
 
 
                         .addOnFailureListener()
                         {
-                            Toast.makeText(this@signup, "Failed to SignUp", Toast.LENGTH_SHORT)
+                            Toast.makeText(this@Signup, "Failed to SignUp", Toast.LENGTH_SHORT)
                                 .show()
                         }
                 }
