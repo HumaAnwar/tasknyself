@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import com.HISkyTech.LoginScreen.Adapters.AdapterTask
-import com.HISkyTech.LoginScreen.Models.task_model
+import com.HISkyTech.LoginScreen.Models.Task_model
 import com.HISkyTech.LoginScreen.databinding.ActivityMusicBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -22,7 +22,7 @@ class Music : AppCompatActivity(),AdapterTask.OnItemClickListener  {
     private lateinit var dialog: AlertDialog
     private var db = Firebase.firestore
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var itemList: List<task_model>
+    private lateinit var itemList: List<Task_model>
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMusicBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -54,7 +54,7 @@ class Music : AppCompatActivity(),AdapterTask.OnItemClickListener  {
 // ...
 
     }
-    private fun taskAdd(model: task_model) {
+    private fun taskAdd(model: Task_model) {
 
         val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
 
@@ -81,9 +81,9 @@ class Music : AppCompatActivity(),AdapterTask.OnItemClickListener  {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -96,15 +96,15 @@ class Music : AppCompatActivity(),AdapterTask.OnItemClickListener  {
             }
     }
 
-    override fun onItemClick(taskModel: task_model) {
+    override fun onItemClick(taskModel: Task_model) {
 
     }
 
-    override fun onDeleteClick(taskModel: task_model) {
+    override fun onDeleteClick(taskModel: Task_model) {
 
     }
 
-    override fun onEditClick(taskModel: task_model) {
+    override fun onEditClick(taskModel: Task_model) {
 
     }
 }

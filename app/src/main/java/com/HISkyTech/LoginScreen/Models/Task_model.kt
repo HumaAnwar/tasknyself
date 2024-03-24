@@ -3,7 +3,7 @@ package com.HISkyTech.LoginScreen.Models
 import com.google.firebase.Timestamp
 import com.google.gson.Gson
 
-data class task_model(
+data class Task_model(
 
     var title:String="",
     var description:String="",
@@ -22,10 +22,10 @@ data class task_model(
     }
 
     companion object {
-        fun fromString(modelFA: String): task_model? {
+        fun fromString(modelFA: String): Task_model? {
             val gson = Gson()
             return try {
-                gson.fromJson(modelFA, task_model::class.java)
+                gson.fromJson(modelFA, Task_model::class.java)
             } catch (e: Exception) {
                 null
             }

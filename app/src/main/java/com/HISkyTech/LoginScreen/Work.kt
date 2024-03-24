@@ -21,7 +21,7 @@ import androidx.collection.emptyLongSet
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.HISkyTech.LoginScreen.Adapters.AdapterTask
-import com.HISkyTech.LoginScreen.Models.task_model
+import com.HISkyTech.LoginScreen.Models.Task_model
 import com.HISkyTech.LoginScreen.Ui.different_tasks
 import com.HISkyTech.LoginScreen.databinding.ActivityWorkBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -109,7 +109,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(title.text.toString(), description.text.toString(), "15-3-24", "Work", "")
+                    var taskmodel = Task_model(title.text.toString(), description.text.toString(), "15-3-24", "Work", "")
                     db.collection("TaskCollection").add(taskmodel)
 
                         .addOnSuccessListener { document ->
@@ -156,7 +156,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 Am.visibility = View.GONE
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(title.text.toString(), quant.text.toString(), description.text.toString(), "15-3-24", "Food", "")
+                    var taskmodel = Task_model(title.text.toString(), quant.text.toString(), description.text.toString(), "15-3-24", "Food", "")
                     db.collection("TaskCollection").add(taskmodel)
 
                         .addOnSuccessListener { document ->
@@ -211,7 +211,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(title.text.toString(), description.text.toString(), "15-3-24", "Music", "")
+                    var taskmodel = Task_model(title.text.toString(), description.text.toString(), "15-3-24", "Music", "")
                     db.collection("TaskCollection").add(taskmodel)
 
                         .addOnSuccessListener { document ->
@@ -255,7 +255,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
+                    var taskmodel = Task_model(
                         title.text.toString(),
                         description.text.toString(),
                         Am.text.toString(),
@@ -311,7 +311,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
+                    var taskmodel = Task_model(
                         title.text.toString(),
                         description.text.toString(),
                         Am.text.toString(),
@@ -364,7 +364,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
+                    var taskmodel = Task_model(
                         title.text.toString(),
                         description.text.toString(),
                         Am.text.toString(),
@@ -422,7 +422,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
+                    var taskmodel = Task_model(
                         title.text.toString(),
                         description.text.toString(),
                         "15-3-24",
@@ -478,7 +478,7 @@ showstudy()
                 dialog.setCancelable(false)
                 btnAdd.setOnClickListener()
                 {
-                    var taskmodel = task_model(
+                    var taskmodel = Task_model(
                         title.text.toString(),
                         description.text.toString(),
                         "15-3-24",
@@ -521,9 +521,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -544,9 +544,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -567,9 +567,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -589,9 +589,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -612,9 +612,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -635,9 +635,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -659,9 +659,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -683,9 +683,9 @@ showhome()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -699,11 +699,11 @@ showhome()
             }
     }
 
-    override fun onItemClick(taskModel: task_model) {
+    override fun onItemClick(taskModel: Task_model) {
 
     }
 
-    override fun onDeleteClick(taskModel: task_model) {
+    override fun onDeleteClick(taskModel: Task_model) {
         var from = intent.getStringExtra("From")
         db.collection("TaskCollection").document(taskModel.task_id).delete()
             .addOnSuccessListener() {
@@ -745,7 +745,7 @@ showhome()
             }
     }
 
-    override fun onEditClick(taskModel: task_model) {
+    override fun onEditClick(taskModel: Task_model) {
         val dialog = Dialog(this@Work)
         var from = intent.getStringExtra("From")
         dialog.setContentView(R.layout.dialog_detail_task)

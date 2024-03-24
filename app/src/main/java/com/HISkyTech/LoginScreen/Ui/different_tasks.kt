@@ -44,6 +44,7 @@ class different_tasks : AppCompatActivity() {
 
 
 
+
       val sharedPreferences = getSharedPreferences("preference", MODE_PRIVATE)
       val editor = sharedPreferences.edit()
       val toggle = ActionBarDrawerToggle(this, binding.maindrawer1,binding.toolbar, R.string.open, R.string.close)

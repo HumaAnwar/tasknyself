@@ -12,18 +12,18 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.HISkyTech.LoginScreen.Models.task_model
+import com.HISkyTech.LoginScreen.Models.Task_model
 import com.HISkyTech.LoginScreen.R
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class AdapterTask ( private val context: Context, private val dataList: List<task_model>,private val listner:OnItemClickListener) :
+class AdapterTask ( private val context: Context, private val dataList: List<Task_model>,private val listner:OnItemClickListener) :
   RecyclerView.Adapter<AdapterTask.ViewHolder>() {
     interface OnItemClickListener {
 
-        fun onItemClick(taskModel: task_model)
-        fun onDeleteClick(taskModel: task_model)
-        fun onEditClick(taskModel: task_model)
+        fun onItemClick(taskModel: Task_model)
+        fun onDeleteClick(taskModel: Task_model)
+        fun onEditClick(taskModel: Task_model)
 
     }
 
@@ -47,7 +47,7 @@ class AdapterTask ( private val context: Context, private val dataList: List<tas
         var edit=itemView.findViewById<ImageButton>(R.id.editbtn)
         var del=itemView.findViewById<ImageButton>(R.id.delete)
 
-        fun bind(taskModel: task_model) {
+        fun bind(taskModel: Task_model) {
 
             task_title.text = taskModel.title
 

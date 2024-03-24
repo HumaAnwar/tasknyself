@@ -25,7 +25,7 @@ import androidx.compose.ui.text.toUpperCase
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import com.HISkyTech.LoginScreen.Adapters.AdapterTask
-import com.HISkyTech.LoginScreen.Models.task_model
+import com.HISkyTech.LoginScreen.Models.Task_model
 import com.HISkyTech.LoginScreen.R
 import com.HISkyTech.LoginScreen.databinding.ActivityHomeBinding
 import com.bumptech.glide.Glide
@@ -42,12 +42,12 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
     lateinit var navigationView: NavigationView
     lateinit var toolbar: Toolbar
     private lateinit var sharedPreferences: SharedPreferences
-     private lateinit var itemList: List<task_model>
-     private lateinit var filteredList: MutableList<task_model>
+     private lateinit var itemList: List<Task_model>
+     private lateinit var filteredList: MutableList<Task_model>
      private lateinit var dialogDetail: Dialog
     private var db = Firebase.firestore
 
-    var list= ArrayList<task_model> ()
+    var list= ArrayList<Task_model> ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -81,7 +81,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
 
     }
     private fun filter(text: String) {
-        val filteredList = ArrayList<task_model>()
+        val filteredList = ArrayList<Task_model>()
 
         for (task in list) {
             val titleInUpperCase = task.title.toUpperCase(Locale.getDefault())
@@ -123,7 +123,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
     }
 
 
-    private fun taskAdd(model: task_model) {
+    private fun taskAdd(model: Task_model) {
 
         val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
 
@@ -151,9 +151,9 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    var taskList = ArrayList<task_model>()
+                    var taskList = ArrayList<Task_model>()
                     for (task in task.result) {
-                        val modelTask = task.toObject(task_model::class.java)
+                        val modelTask = task.toObject(Task_model::class.java)
                         taskList.add(modelTask)
                         taskList.sortBy { it.title }
                     }
@@ -167,12 +167,12 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
     }
 
      @SuppressLint("CutPasteId")
-     override fun onItemClick(taskModel: task_model) {
+     override fun onItemClick(taskModel: Task_model) {
 }
 
 
 
-     private fun deletetask(taskModel: task_model) {
+     private fun deletetask(taskModel: Task_model) {
 
          db.collection("Tasks").document(taskModel.task_id).delete()
              .addOnSuccessListener{
@@ -184,7 +184,7 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
              }
 
      }
-     private fun update_task(taskModel: task_model) {
+     private fun update_task(taskModel: Task_model) {
          db.collection("Tasks").document(taskModel.task_id).set(taskModel)
              .addOnSuccessListener{
                  Toast.makeText(this, "Updated successfully", Toast.LENGTH_SHORT).show()
@@ -194,10 +194,10 @@ class Home : AppCompatActivity() ,AdapterTask.OnItemClickListener {
                  Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show()
              }
      }
-     override fun onEditClick(taskModel: task_model) {
+     override fun onEditClick(taskModel: Task_model) {
 
         }
-     override fun onDeleteClick(taskModel: task_model) {
+     override fun onDeleteClick(taskModel: Task_model) {
      }
 
 
