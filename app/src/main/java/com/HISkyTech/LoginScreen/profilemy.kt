@@ -7,49 +7,32 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.Toast
+import com.HISkyTech.LoginScreen.Models.profile
 import com.HISkyTech.LoginScreen.Ui.MainActivity
 import com.HISkyTech.LoginScreen.databinding.ActivityProfilemyBinding
-import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
 class profilemy: AppCompatActivity() {
     private lateinit var binding: ActivityProfilemyBinding
-    private lateinit var sharedPreferences: SharedPreferences
+
     private var db=Firebase.firestore
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             binding = ActivityProfilemyBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-            sharedPreferences = getSharedPreferences("my_preference", Context.MODE_PRIVATE)
 
-            // Retrieve values from SharedPreferences and set them to the views
-            val name = sharedPreferences.getString("name", "")
-            val user = sharedPreferences.getString("Name", "")
-            val email = sharedPreferences.getString("email", "")
-            val dob = sharedPreferences.getString("dob", "")
 
-            binding.entername.text = name
-            binding.editTextName.text = email
-            binding.editTextDOB.text = dob
-            binding.mya.text=user
 
-            Glide.with(this)
-                .load(sharedPreferences.getString("imageurl","").toString())
-                .into(binding.imagetodo)
-
-            // Set onClickListener for the save button
             binding.buttonSave.setOnClickListener {
-                val editor = sharedPreferences.edit()
-                editor.putString("name", binding.entername.text.toString())
-                editor.putString("email", binding.editTextName.text.toString())
-                editor.putString("dob", binding.editTextDOB.text.toString())
-                editor.putString("user", binding.mya.text.toString())
-                editor.apply()
-                Toast.makeText(this, "Edit Profile", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@profilemy,personal::class.java))
+                val updatedProfile =profile()
+                updatedProfile.name = binding.entername.text.toString()
+                updatedProfile.email = binding.editTextName.text.toString()
+                updatedProfile.birthday = binding.editTextDOB.text.toString()
 
+
+                db.collection("personalTask")
 
                 }
         }

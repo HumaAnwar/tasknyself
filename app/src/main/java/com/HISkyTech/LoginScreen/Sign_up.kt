@@ -1,4 +1,4 @@
-package com.HISkyTech.LoginScreen.Ui
+package com.HISkyTech.LoginScreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,23 +6,25 @@ import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Toast
-import com.HISkyTech.LoginScreen.databinding.ActivitySignupBinding
 import com.HISkyTech.LoginScreen.Models.Loginmodel
-import com.HISkyTech.LoginScreen.R
+import com.HISkyTech.LoginScreen.Ui.Login
+import com.HISkyTech.LoginScreen.databinding.ActivitySignUpBinding
+
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
-class Signup : AppCompatActivity() {
-    private lateinit var binding: ActivitySignupBinding
+class Sign_up : AppCompatActivity() {
+    private lateinit var binding:ActivitySignUpBinding
+
     private var db = Firebase.firestore
     private var isPasswordVisible = false
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        binding =ActivitySignUpBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         binding.signin.setOnClickListener() {
             startActivity(Intent(this, Login::class.java))
+            finish()
         }
         binding.apply {
             signup.setOnClickListener() {
@@ -32,14 +34,15 @@ class Signup : AppCompatActivity() {
                 if (email.text.toString().isEmpty() && password.text.toString()
                         .isEmpty() && name.text.toString().isEmpty()
                 ) {
-                    Toast.makeText(this@Signup, "please Fill name and email", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@Sign_up, "please Fill name and email", Toast.LENGTH_SHORT)
                         .show()
                 } else if (password.text.toString().length < 6) {
-                    Toast.makeText(this@Signup, "Invalid password format", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@Sign_up, "Invalid password format", Toast.LENGTH_SHORT)
                         .show()
                 } else if (password.text.toString() != confirmpassword.text.toString()) {
-                    Toast.makeText(this@Signup, "password not matched", Toast.LENGTH_SHORT).show()
-                } else {
+                    Toast.makeText(this@Sign_up, "password not matched", Toast.LENGTH_SHORT).show()
+                }
+                else {
                     usermodel.mail = email.text.toString()
                     usermodel.pasword = password.text.toString()
                     usermodel.name = name.text.toString()
@@ -51,16 +54,16 @@ class Signup : AppCompatActivity() {
                             db.collection("User").document(documentreference.id).set(usermodel)
 
 
-                            Toast.makeText(this@Signup, "SignUp Successfull", Toast.LENGTH_SHORT)
+                            Toast.makeText(this@Sign_up, "SignUp Successfull", Toast.LENGTH_SHORT)
                                 .show()
-                            startActivity(Intent(this@Signup, Login::class.java))
-
+                            startActivity(Intent(this@Sign_up, Login::class.java))
+finish()
                         }
 
 
                         .addOnFailureListener()
                         {
-                            Toast.makeText(this@Signup, "Failed to SignUp", Toast.LENGTH_SHORT)
+                            Toast.makeText(this@Sign_up, "Failed to SignUp", Toast.LENGTH_SHORT)
                                 .show()
                         }
                 }

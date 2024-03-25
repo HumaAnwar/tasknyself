@@ -20,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.HISkyTech.LoginScreen.Bills
 import com.HISkyTech.LoginScreen.FoodTask
 import com.HISkyTech.LoginScreen.Home
+import com.HISkyTech.LoginScreen.Models.profile
 import com.HISkyTech.LoginScreen.Music
 import com.HISkyTech.LoginScreen.R
 import com.HISkyTech.LoginScreen.Shopping
@@ -27,9 +28,9 @@ import com.HISkyTech.LoginScreen.Study
 import com.HISkyTech.LoginScreen.Travel
 import com.HISkyTech.LoginScreen.Work
 import com.HISkyTech.LoginScreen.databinding.ActivityDifferentTasksBinding
-import com.HISkyTech.LoginScreen.personal
 import com.HISkyTech.LoginScreen.profilemy
 import com.google.android.material.navigation.NavigationView
+import okio.blackholeSink
 
 class different_tasks : AppCompatActivity() {
     private lateinit var binding: ActivityDifferentTasksBinding
@@ -45,7 +46,7 @@ class different_tasks : AppCompatActivity() {
 
 
 
-      val sharedPreferences = getSharedPreferences("preference", MODE_PRIVATE)
+      val sharedPreferences = getSharedPreferences("preference", Context.MODE_PRIVATE)
       val editor = sharedPreferences.edit()
       val toggle = ActionBarDrawerToggle(this, binding.maindrawer1,binding.toolbar, R.string.open, R.string.close)
       binding.maindrawer1.addDrawerListener(toggle)
@@ -61,6 +62,7 @@ class different_tasks : AppCompatActivity() {
           }
           R.id.home -> {
            startActivity(Intent(this,profilemy::class.java))
+            finish()
 
           }
 
@@ -103,7 +105,7 @@ class different_tasks : AppCompatActivity() {
 
 
           R.id.fav -> {
-            startActivity(Intent(this,personal::class.java))
+            Toast.makeText(this, "Favorite clicked", Toast.LENGTH_SHORT).show()
           }
 
           R.id.share -> {
@@ -129,11 +131,18 @@ class different_tasks : AppCompatActivity() {
         }
           R.id.theme -> {
             isDarkTheme = !isDarkTheme
+            val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+            val editor = sharedPreferences.edit()
+
+            editor.putBoolean("isDarkTheme", isDarkTheme)
+            editor.apply()
 
             if (isDarkTheme) {
               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+             
             }
 
 
@@ -149,6 +158,7 @@ class different_tasks : AppCompatActivity() {
           editor.putBoolean("IsLog", false)
           editor.apply()
           startActivity(Intent(this,Login::class.java))
+            finish()
 
           Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
 
@@ -163,28 +173,36 @@ class different_tasks : AppCompatActivity() {
       binding.work.setOnClickListener(){
 
         startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Work"))
+
         }
         binding.home.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Home"))
+
         }
         binding.Music.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Music"))
+
         }
         binding.food.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Food"))
 
+
         binding.bills.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Bills"))
+
         }
         binding.study.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Study"))
+
         }
         binding.travel.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Travel"))
+
         }
 
         binding.shopping.setOnClickListener(){
           startActivity(Intent(this@different_tasks,Work::class.java).putExtra("From","Shopping"))
+
         }
     }}
   override fun onOptionsItemSelected(item: MenuItem): Boolean {

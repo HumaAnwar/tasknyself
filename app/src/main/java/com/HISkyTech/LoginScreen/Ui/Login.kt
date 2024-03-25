@@ -8,6 +8,7 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Toast
 import com.HISkyTech.LoginScreen.R
+import com.HISkyTech.LoginScreen.Sign_up
 import com.HISkyTech.LoginScreen.databinding.ActivityLoginBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -21,10 +22,10 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
-        binding.password
-        binding.imageViewEye
+
         binding.signup.setOnClickListener() {
-            startActivity(Intent(this, Signup::class.java))
+            startActivity(Intent(this,Sign_up::class.java))
+finish()
         }
 
 
@@ -52,13 +53,14 @@ class Login : AppCompatActivity() {
                                     editor.apply()
 
                                     Toast.makeText(this@Login, "Login Successful", Toast.LENGTH_SHORT).show()
-                                    startActivity(Intent(this@Login, MainActivity::class.java))
+                                    startActivity(Intent(this@Login,different_tasks::class.java))
                                     finish()
                                 } else {
                                     Toast.makeText(this@Login, "Invalid email or password", Toast.LENGTH_SHORT).show()
                                 }
                             } else {
                                 Toast.makeText(this@Login, "Login Unsuccessful", Toast.LENGTH_SHORT).show()
+
                             }
                         }
                 }

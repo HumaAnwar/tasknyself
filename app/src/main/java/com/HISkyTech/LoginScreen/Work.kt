@@ -269,11 +269,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
                             dialog.dismiss()
                             taskmodel.task_id = document.id.toString()
                             taskmodel.userId = sharedPreferences.getString("userId", "")!!
-                            Toast.makeText(
-                                this@Work,
-                                "Succesfull add Bills task",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this@Work, "Succesfull add Bills task", Toast.LENGTH_SHORT).show()
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
                             showbill()

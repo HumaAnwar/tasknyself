@@ -63,6 +63,7 @@
                            android:paddingStart="70dp"
                             android:textStyle="bold"
                             android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/hum"
                             android:text="Huma Anwar"
                             android:textAppearance="?android:textAppearanceMedium" />
                 </androidx.cardview.widget.CardView>
