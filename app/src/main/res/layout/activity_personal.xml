@@ -132,15 +132,6 @@
         android:layout_below="@id/genderLabel"
         android:layout_marginTop="6dp"
         android:orientation="horizontal">
-        <androidx.cardview.widget.CardView
-            android:id="@+id/maleCardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D1DCE1"
-            android:layout_marginHorizontal="30dp"
-            android:layout_below="@id/genderLabel"
-            android:layout_marginTop="6dp"
-            app:cardCornerRadius="90dp">
         <RadioButton
             android:id="@+id/maleRadioButton"
             android:layout_width="wrap_content"
@@ -149,23 +140,12 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginStart="10dp"
             android:text="Male" />
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/malefeCardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D1DCE1"
-            android:layout_marginHorizontal="30dp"
-            android:layout_below="@id/genderLabel"
-            android:layout_marginTop="6dp"
-            app:cardCornerRadius="90dp">
         <RadioButton
             android:id="@+id/femaleRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:text="Female" />
-        </androidx.cardview.widget.CardView>
     </RadioGroup>
 
     <Button

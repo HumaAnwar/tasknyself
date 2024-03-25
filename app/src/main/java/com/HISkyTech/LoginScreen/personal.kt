@@ -5,12 +5,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.compose.ui.layout.FirstBaseline
+import androidx.core.net.toUri
 import com.HISkyTech.LoginScreen.Models.Loginmodel
 import com.HISkyTech.LoginScreen.Models.profile
 import com.HISkyTech.LoginScreen.Ui.Login
@@ -24,62 +27,105 @@ import java.util.UUID
 
 class personal : AppCompatActivity() {
     private lateinit var binding: ActivityPersonalBinding
-private var db=Firebase.firestore
+    private var db = Firebase.firestore
+    private lateinit var sharedPreferences: SharedPreferences
+    lateinit var selectedImg: Uri
+
+    private lateinit var person:profile
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPersonalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        sharedPreferences=getSharedPreferences("preference",Context.MODE_PRIVATE)
+selectedImg="".toUri()
+        person= profile()
         binding.edibutton.setOnClickListener() {
 
             val name = findViewById<EditText>(R.id.enterNameEditText).text.toString()
             val email = findViewById<EditText>(R.id.enterEmailEditText).text.toString()
             val dob = findViewById<EditText>(R.id.enterDOBEditText).text.toString()
-            val gender =
-                if (findViewById<RadioButton>(R.id.maleRadioButton).isChecked) "Male" else "Female"
+            val gender =findViewById<RadioGroup>(R.id.genderRadioGroup)
+           var gender2=     if (gender.checkedRadioButtonId==R.id.maleRadioButton) "Male" else "Female"
 
-            var person = profile()
+
             person.email = email
-            person.gndr = gender
+            person.gndr = gender2
             person.birthday = dob
             person.name = name
-            db.collection("personalTask").add(person)
-                .addOnSuccessListener { documentreference ->
+       if(email.isEmpty()&&dob.isEmpty()&&name.isEmpty()&&gender2.isEmpty())
+       {
+           Toast.makeText(this@personal, "fill all fields", Toast.LENGTH_SHORT).show()
+       }
+            else
+       {
+           saveImage()
+       }
 
 
-                    person.userId = documentreference.id
-                    db.collection("personalTask").document(documentreference.id).set(person)
 
-
-                    Toast.makeText(this, "Add information successful", Toast.LENGTH_SHORT)
-                        .show()
-                    startActivity(Intent(this, profilemy::class.java))
-                    finish()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
-                }
 
         }
 
         binding.img.setOnClickListener {
-            Toast.makeText(this@personal, "jsdhsldj", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@personal, "hello", Toast.LENGTH_SHORT).show()
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             startActivityForResult(intent, 1)
         }
 
     }
+
     @SuppressLint("SuspiciousIndentation")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-           var selectedImg = data.data!!
+             selectedImg = data.data!!
             binding.img.setImageURI(selectedImg)
-  val storageRef = FirebaseStorage.getInstance().reference.child("images/${UUID.randomUUID()}")
+
+        }
+    }
+
+    private fun savedata()
+    {
+        db.collection("User").document(sharedPreferences.getString("userId","")!!)
+            .set(person)
+            .addOnSuccessListener { documentreference ->
+
+
+
+                Toast.makeText(this, "Add information successful", Toast.LENGTH_SHORT)
+                    .show()
+                startActivity(Intent(this, profilemy::class.java))
+                finish()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun saveImage()
+    {
+
+        if(selectedImg.toString().isEmpty())
+        {
+            Toast.makeText(this@personal, "Please slect image", Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
+            val storageRef =
+                FirebaseStorage.getInstance().reference.child("images/${UUID.randomUUID()}")
             storageRef.putFile(selectedImg)
                 .addOnSuccessListener { taskSnapshot ->
                     storageRef.downloadUrl.addOnSuccessListener { uri ->
-                        val imageUrl = uri.toString()
-                        var db = Firebase.firestore
-                    }}}}}
+                      person.image=uri.toString()
+                     savedata()
+                    }
+                }
+        }
+
+    }
+}

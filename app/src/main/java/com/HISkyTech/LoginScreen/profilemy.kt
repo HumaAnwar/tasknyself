@@ -10,12 +10,13 @@ import android.widget.Toast
 import com.HISkyTech.LoginScreen.Models.profile
 import com.HISkyTech.LoginScreen.Ui.MainActivity
 import com.HISkyTech.LoginScreen.databinding.ActivityProfilemyBinding
+import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
 class profilemy: AppCompatActivity() {
     private lateinit var binding: ActivityProfilemyBinding
-
+    private lateinit var sharedPreferences: SharedPreferences
     private var db=Firebase.firestore
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -23,19 +24,38 @@ class profilemy: AppCompatActivity() {
             setContentView(binding.root)
 
 
+            sharedPreferences=getSharedPreferences("preference",Context.MODE_PRIVATE)
+            SetData()
+
 
 
             binding.buttonSave.setOnClickListener {
-                val updatedProfile =profile()
-                updatedProfile.name = binding.entername.text.toString()
-                updatedProfile.email = binding.editTextName.text.toString()
-                updatedProfile.birthday = binding.editTextDOB.text.toString()
-
-
-                db.collection("personalTask")
+           startActivity(Intent(this@profilemy,personal::class.java))
 
                 }
         }
+
+
+    private fun SetData()
+    {
+        db.collection("User").document(sharedPreferences.getString("userId","")!!)
+            .get()
+            .addOnSuccessListener()
+            {
+                document->
+
+                var person=document.toObject(profile::class.java)
+
+                binding.entername.text=person?.name
+                binding.mya.text=person?.name
+                binding.dob.text=person?.birthday
+                binding.editTextName.text=person?.email
+                binding.textViewgr.text=person?.gndr
+
+                Glide.with(this@profilemy).load(person?.image).into(binding.imagetodo)
+
+            }
+    }
 }
 
 

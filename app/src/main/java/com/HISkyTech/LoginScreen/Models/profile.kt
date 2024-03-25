@@ -5,5 +5,6 @@ data class profile(
     var email: String = "",
     var birthday: String = "",
     var gndr: String = "",
-    var userId: String = ""
+    var userId: String = "",
+    var image: String = ""
 )
