@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.HISkyTech.LoginScreen.Adapters.AdapterTask
 import com.HISkyTech.LoginScreen.Models.Task_model
+import com.HISkyTech.LoginScreen.Ui.constant
 import com.HISkyTech.LoginScreen.Ui.different_tasks
 import com.HISkyTech.LoginScreen.databinding.ActivityWorkBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,7 +32,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
     private var db = FirebaseFirestore.getInstance()
     private lateinit var sharedPreferences: SharedPreferences
-
+private lateinit var constant: constant
 
 
     private lateinit var binding:ActivityWorkBinding
@@ -116,8 +117,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
                             taskmodel.task_id = document.id.toString()
                             taskmodel.userId = sharedPreferences.getString("userId", "")!!
-                            Toast.makeText(this@Work, "Succesfull add work task", Toast.LENGTH_SHORT).show()
-
+                                   showtoast(toast = constant.successful)
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
 
                             dialog.dismiss()
@@ -163,11 +163,7 @@ class Work : AppCompatActivity(),AdapterTask.OnItemClickListener {
 
                             taskmodel.task_id = document.id.toString()
                             taskmodel.userId = sharedPreferences.getString("userId", "")!!
-                            Toast.makeText(
-                                this@Work,
-                                "Succesfull add food task",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                           showtoast(toast=constant.successful)
 
                             db.collection("TaskCollection").document(document.id).set(taskmodel)
                             dialog.dismiss()
@@ -812,6 +808,12 @@ showhome()
         }
 
         dialog.show()
+    }
+    fun showtoast(toast:String){
+
+        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
+
+
     }
 
     }

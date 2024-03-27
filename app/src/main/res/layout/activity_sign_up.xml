@@ -9,6 +9,8 @@
     android:gravity="bottom"
     tools:context=".Sign_up">
 
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:backgroundTint="#0000ffff"

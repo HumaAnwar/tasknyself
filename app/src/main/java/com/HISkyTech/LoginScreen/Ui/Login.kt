@@ -16,6 +16,7 @@ import com.google.firebase.firestore.firestore
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var db = Firebase.firestore
+   private  var constant=constant()
     private var isPasswordVisible = false
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -52,11 +53,9 @@ finish()
                                     editor.putString("userId", documentId)
                                     editor.apply()
 
-                                    Toast.makeText(this@Login, "Login Successful", Toast.LENGTH_SHORT).show()
+                                    showtoast(toast =constant.login )
                                     startActivity(Intent(this@Login,different_tasks::class.java))
                                     finish()
-                                } else {
-                                    Toast.makeText(this@Login, "Invalid email or password", Toast.LENGTH_SHORT).show()
                                 }
                             } else {
                                 Toast.makeText(this@Login, "Login Unsuccessful", Toast.LENGTH_SHORT).show()
@@ -88,7 +87,12 @@ finish()
         }
     }
 
+fun showtoast(toast:String){
 
+    Toast.makeText(this@Login, toast, Toast.LENGTH_SHORT).show()
+
+
+}
 
 }
 

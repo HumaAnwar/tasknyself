@@ -17,6 +17,7 @@ import androidx.core.net.toUri
 import com.HISkyTech.LoginScreen.Models.Loginmodel
 import com.HISkyTech.LoginScreen.Models.profile
 import com.HISkyTech.LoginScreen.Ui.Login
+import com.HISkyTech.LoginScreen.Ui.constant
 import com.HISkyTech.LoginScreen.Ui.different_tasks
 import com.HISkyTech.LoginScreen.databinding.ActivityMainBinding
 import com.HISkyTech.LoginScreen.databinding.ActivityPersonalBinding
@@ -32,13 +33,12 @@ class personal : AppCompatActivity() {
     lateinit var selectedImg: Uri
 
     private lateinit var person:profile
-
+ private var constant=constant()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPersonalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         sharedPreferences=getSharedPreferences("preference",Context.MODE_PRIVATE)
 selectedImg="".toUri()
@@ -96,9 +96,7 @@ selectedImg="".toUri()
             .addOnSuccessListener { documentreference ->
 
 
-
-                Toast.makeText(this, "Add information successful", Toast.LENGTH_SHORT)
-                    .show()
+                  showtoast(constant.successful)
                 startActivity(Intent(this, profilemy::class.java))
                 finish()
             }
@@ -112,7 +110,7 @@ selectedImg="".toUri()
 
         if(selectedImg.toString().isEmpty())
         {
-            Toast.makeText(this@personal, "Please slect image", Toast.LENGTH_SHORT).show()
+            showtoast(constant.image)
         }
         else
         {
@@ -126,6 +124,12 @@ selectedImg="".toUri()
                     }
                 }
         }
+
+    }
+    fun showtoast(toast:String){
+
+        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
+
 
     }
 }

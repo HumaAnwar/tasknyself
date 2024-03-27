@@ -3,6 +3,8 @@ package com.HISkyTech.LoginScreen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Toast
@@ -28,6 +30,8 @@ class Sign_up : AppCompatActivity() {
         }
         binding.apply {
             signup.setOnClickListener() {
+
+
 
                 var usermodel = Loginmodel()
 

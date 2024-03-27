@@ -46,7 +46,7 @@ class profilemy: AppCompatActivity() {
 
                 var person=document.toObject(profile::class.java)
 
-                binding.entername.text=person?.name
+               binding.entername.text= person?.name
                 binding.mya.text=person?.name
                 binding.dob.text=person?.birthday
                 binding.editTextName.text=person?.email
@@ -56,6 +56,7 @@ class profilemy: AppCompatActivity() {
 
             }
     }
+
 }
 
 

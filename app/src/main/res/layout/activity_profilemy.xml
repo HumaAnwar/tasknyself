@@ -120,7 +120,7 @@
                     android:layout_marginTop="8dp"
                     android:textColor="@color/black"
                     android:gravity="center"
-                    android:text="Date of Birth :" />
+                    android:text="Your Date of birth:" />
 
                 <TextView
                     android:id="@+id/editTextDOB"
@@ -128,8 +128,10 @@
                     android:layout_height="25dp"
                     android:layout_marginTop="8dp"
                     android:paddingStart="130dp"
+
                     android:textStyle="bold"
-                    android:text="Enter your date of birth"
+                    android:text="Date of Birth"
+                   android:layout_marginStart="20dp"
                     android:inputType="date"
                     android:textAppearance="?android:textAppearanceMedium" />
 
